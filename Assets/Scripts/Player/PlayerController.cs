@@ -5,8 +5,10 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
+    public float PlayerSpeed = 7;
+    public float Gravity = 6;
     private CharacterController _characterController;
-    public float Speed = 6;
+    private float _verticalSpeed = 6;
 
     void Start()
     {
@@ -20,10 +22,20 @@ public class PlayerController : MonoBehaviour
 
     private void DoMovement()
     {
-        float horizontalMove = Input.GetAxis("Horizontal");
-        float verticalMove = Input.GetAxis("Vertical");
+        var horizontalMovement = transform.right * Input.GetAxis("Horizontal");
+        var verticalMovement = transform.forward * Input.GetAxis("Vertical");
 
-        var movement = transform.forward * verticalMove + transform.right * horizontalMove;
+        if (_characterController.isGrounded)
+        {
+            _verticalSpeed = 0;
+        }
+        else
+        {
+            _verticalSpeed -= Gravity * Time.deltaTime;
+        }
+
+        var playerMovement = verticalMovement + horizontalMovement;
+        var movement = PlayerSpeed * Time.deltaTime * playerMovement + new Vector3(0, _verticalSpeed, 0) * Time.deltaTime;
         _characterController.Move(movement);
     }
 }
