@@ -1,27 +1,32 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
-    public float PlayerSpeed = 7;
-    public float Gravity = 6;
+    [SerializeField]
+    private float _playerSpeed = 7;
+
+    [SerializeField]
+    private float _gravity = 6;
+
     [Range(0, 1)]
-    public float RotationSpeed = 0.15f;
-    public Transform RotatingTransform;
+    [SerializeField]
+    private float _rotationSpeed = 0.15f;
+
+    [SerializeField]
+    private Transform _rotatingTransform;
 
     private CharacterController _characterController;
     private float _verticalSpeed;
 
-    void Start()
+    void Awake()
     {
         _characterController = GetComponent<CharacterController>();
 
-        if (RotatingTransform is null)
+        if (_rotatingTransform is null)
         {
-            Debug.LogError($"{nameof(RotatingTransform)} must be set");
+            Debug.LogError($"{nameof(_rotatingTransform)} must be set");
         }
     }
 
@@ -30,7 +35,7 @@ public class PlayerController : MonoBehaviour
         DoMovement();
     }
 
-    private void DoMovement()
+    public void DoMovement()
     {
         var horizontalMovement = transform.right * Input.GetAxis("Horizontal");
         var verticalMovement = transform.forward * Input.GetAxis("Vertical");
@@ -38,7 +43,7 @@ public class PlayerController : MonoBehaviour
 
         if (playerMovement != Vector3.zero)
         {
-            RotatingTransform.rotation = Quaternion.Slerp(RotatingTransform.rotation, Quaternion.LookRotation(playerMovement), RotationSpeed);
+            _rotatingTransform.rotation = Quaternion.Slerp(_rotatingTransform.rotation, Quaternion.LookRotation(playerMovement), _rotationSpeed);
         }
 
         if (_characterController.isGrounded)
@@ -47,11 +52,11 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            _verticalSpeed -= Gravity * Time.deltaTime;
+            _verticalSpeed -= _gravity * Time.deltaTime;
         }
 
 
-        var finalMovement = PlayerSpeed * Time.deltaTime * playerMovement
+        var finalMovement = _playerSpeed * Time.deltaTime * playerMovement
             + new Vector3(0, _verticalSpeed, 0) * Time.deltaTime;
         _characterController.Move(finalMovement);
     }
