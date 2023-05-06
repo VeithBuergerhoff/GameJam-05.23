@@ -193,9 +193,10 @@ GameObject:
   - component: {fileID: 4239343691392737833}
   - component: {fileID: 4239343691392737838}
   - component: {fileID: 4239343691392737839}
+  - component: {fileID: 8356734991216737627}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -261,9 +262,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76975b2b5c389e745860c079f28d1fcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerSpeed: 7
-  Gravity: 6
-  RotatingTransform: {fileID: 0}
+  _playerSpeed: 7
+  _gravity: 6
+  _rotationSpeed: 0.15
+  _rotatingTransform: {fileID: 8572990155817613771}
+--- !u!114 &8356734991216737627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4239343691392737836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8aa0d14665186f44921f2f1b633fe4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rotatingTransform: {fileID: 8572990155817613771}
+  _itemParent: {fileID: 8572990155817613771}
+  _itemDropoffDistance: 2
+  _itemDropoffHeight: 1
+  _pickupKeys:
+  - b
+  - c
 --- !u!1 &5121898857490086198
 GameObject:
   m_ObjectHideFlags: 0
