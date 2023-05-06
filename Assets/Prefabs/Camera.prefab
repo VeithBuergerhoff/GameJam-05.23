@@ -130,8 +130,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 0}
+  _mainCamera: {fileID: 4902693535604644738}
   _offset: {x: 0, y: 10, z: 10}
   _freeWindow: 0.3
   _lerpValue: 1
   _maxDistance: 3
   _lerpBoost: 10
+  _useLerping: 1
