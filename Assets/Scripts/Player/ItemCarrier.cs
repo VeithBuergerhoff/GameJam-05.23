@@ -78,7 +78,7 @@ public class ItemCarrier : MonoBehaviour
         {
             return;
         }
-
+        
         var item = other.GetComponentInParent<ItemController>();
         if (item is null)
         {
@@ -89,10 +89,7 @@ public class ItemCarrier : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject == _currentInteractableItem?.gameObject)
-        {
-            _currentInteractableItem = null;
-        }
+        _currentInteractableItem = null;
     }
 
     private void PickUp(string key)
@@ -112,7 +109,6 @@ public class ItemCarrier : MonoBehaviour
 
         _items.Add(key, item);
 
-        item.GetComponent<BoxCollider>().enabled = false;
         var colliders = item.GetComponentsInChildren<BoxCollider>();
         foreach (var collider in colliders)
         {
@@ -137,6 +133,8 @@ public class ItemCarrier : MonoBehaviour
             item.transform.LookAt(transform, Vector3.up);
 
             _colliderEnableQueue.Enqueue(item);
+
+            _currentInteractableItem = null;
         }
     }
 }

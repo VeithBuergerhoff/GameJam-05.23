@@ -37,8 +37,8 @@ public class PlayerController : MonoBehaviour
 
     public void DoMovement()
     {
-        var horizontalMovement = transform.right * Input.GetAxis("Horizontal");
-        var verticalMovement = transform.forward * Input.GetAxis("Vertical");
+        var horizontalMovement = transform.right * -Input.GetAxis("Horizontal");
+        var verticalMovement = transform.forward * -Input.GetAxis("Vertical");
         var playerMovement = verticalMovement + horizontalMovement;
 
         if (playerMovement != Vector3.zero)
