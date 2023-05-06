@@ -27,13 +27,10 @@ public class TaskManager : MonoBehaviour
     {
         if (Instance is not null && Instance != this)
         {
-            Debug.LogError($"There can only ever be one instance of {nameof(TaskManager)}");
-            Destroy(this);
+            throw new Exception($"{nameof(TaskManager)} is a singleton! There can only ever be one instance");
         }
-        else
-        {
-            Instance = this;
-        }
+
+        Instance = this;
     }
 
     void Update()

@@ -1,13 +1,11 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
     [SerializeField]
     private Transform _player;
-    
+
     [SerializeField]
     private GameObject _mainCamera;
 
@@ -36,13 +34,17 @@ public class CameraController : MonoBehaviour
     public static CameraController Instance { get; private set; }
 
     void Awake()
-    {        
-        if (Instance != null)
-            throw new Exception("Invalid state, instance is not null");
+    {
+        if (Instance is not null && Instance != this)
+        {
+            throw new Exception($"{nameof(CameraController)} is a singleton! There can only ever be one instance");
+        }
+
         Instance = this;
     }
 
-    public GameObject getMainCamera() {
+    public GameObject getMainCamera()
+    {
         return _mainCamera;
     }
 
