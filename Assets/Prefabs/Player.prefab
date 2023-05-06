@@ -285,6 +285,7 @@ MonoBehaviour:
   _pickupKeys:
   - b
   - c
+  - i
 --- !u!1 &5121898857490086198
 GameObject:
   m_ObjectHideFlags: 0
