@@ -1,5 +1,6 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(CapsuleCollider))]
@@ -119,8 +120,10 @@ public class ItemCarrier : MonoBehaviour
         rigidbody.detectCollisions = true;
         rigidbody.isKinematic = true;
 
+        int stackPosition = _items.Count -1;
+
         item.transform.SetParent(_itemParent);
-        item.transform.localPosition = Vector3.zero;
+        item.transform.localPosition = Vector3.up * stackPosition;
     }
 
     private void Drop(string key)
@@ -136,5 +139,9 @@ public class ItemCarrier : MonoBehaviour
 
             _currentInteractableItem = null;
         }
+
+        for(int i = 0; i < _items.Count(); i++){
+            _items.Values.ElementAt(i).transform.localPosition = Vector3.up * i;
+        }     
     }
 }
