@@ -45,13 +45,13 @@ public class CameraController : MonoBehaviour
         var distance = Vector3.Distance(transform.position, desiredPosition);
         if (distance > _freeWindow)
         {
-            var t = distance * _lerpValue * Time.deltaTime;
+            var delta = distance * _lerpValue * Time.deltaTime;
             if (distance > _maxDistance)
             {
-                t *= _lerpBoost;
+                delta *= _lerpBoost;
             }
 
-            transform.position = Vector3.Lerp(transform.position, desiredPosition, t);
+            transform.position = Vector3.MoveTowards(transform.position, desiredPosition, delta);
         }
     }
 }
