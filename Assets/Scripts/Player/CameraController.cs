@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,9 @@ public class CameraController : MonoBehaviour
 {
     [SerializeField]
     private Transform _player;
+    
+    [SerializeField]
+    private GameObject _mainCamera;
 
     [SerializeField]
     private Vector3 _offset = new(0, 10, 10);
@@ -28,6 +32,19 @@ public class CameraController : MonoBehaviour
 
     [SerializeField]
     private bool _useLerping = true;
+
+    public static CameraController Instance { get; private set; }
+
+    void Awake()
+    {        
+        if (Instance != null)
+            throw new Exception("Invalid state, instance is not null");
+        Instance = this;
+    }
+
+    public GameObject getMainCamera() {
+        return _mainCamera;
+    }
 
     void Update()
     {
