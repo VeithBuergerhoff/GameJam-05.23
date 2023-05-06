@@ -8,4 +8,7 @@ public class ItemController : MonoBehaviour
     {
         public string Name;
     }
+
+    [SerializeField]
+    private Item _item;
 }
