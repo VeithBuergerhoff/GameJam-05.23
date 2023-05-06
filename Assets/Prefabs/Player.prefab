@@ -263,7 +263,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerSpeed: 7
   Gravity: 6
-  RotatingTransform: {fileID: 0}
+  RotationSpeed: 0.15
+  RotatingTransform: {fileID: 8572990155817613771}
 --- !u!1 &5121898857490086198
 GameObject:
   m_ObjectHideFlags: 0

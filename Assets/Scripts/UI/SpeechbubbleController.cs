@@ -20,5 +20,6 @@ public class SpeechbubbleController : MonoBehaviour
     void Update()
     {
         rectTransform.SetPositionAndRotation(followedGameObject.transform.position + positionOffset, mainCamera.transform.rotation);
+        
     }
 }
