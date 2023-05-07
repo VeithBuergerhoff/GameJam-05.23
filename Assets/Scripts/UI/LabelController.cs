@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class LabelController : MonoBehaviour
 {
@@ -27,26 +27,21 @@ public class LabelController : MonoBehaviour
     [SerializeField]
     private char hotkey = 'D';
 
+    [SerializeField]
     private RectTransform _rectTransform;
-    private CameraController _cameraController;
 
-    private void Awake()
-    {
-        _rectTransform = GetComponent<RectTransform>();
-        _cameraController = FindObjectOfType<CameraController>();
-    }
+    private Transform _camera;
 
-    private void Start()
+    void Start()
     {
+        _camera = FindObjectOfType<CameraController>().mainCamera.transform;
         SetText(description, hotkey);
     }
 
     void Update()
     {
-        transform.SetPositionAndRotation(
-            transform.parent.position + Vector3.up * verticalPositionOffset,
-            _cameraController.transform.rotation
-        );
+        transform.SetPositionAndRotation(transform.parent.position + Vector3.up * verticalPositionOffset,
+                                         _camera.rotation);
     }
 
     public void SetText(string description, char hotkey)
@@ -70,7 +65,8 @@ public class LabelController : MonoBehaviour
         iconText.SetText(hotkey.ToString());
     }
 
-    public char GetHotkey(){
+    public char GetHotkey()
+    {
         return hotkey;
     }
 }

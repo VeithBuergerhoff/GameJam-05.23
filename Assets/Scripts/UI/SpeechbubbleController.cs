@@ -44,13 +44,11 @@ public class SpeechbubbleController : MonoBehaviour
     private GameObject taksIndicatorBackground;
 
     [SerializeField]
-    private GameObject playerSensor;
-    private SensorController sensorController;
+    private SensorController _playerSensor;
     private GameObject player;
 
     void Awake()
     {
-        sensorController = playerSensor.GetComponent<SensorController>();
         _rectTransform = GetComponent<RectTransform>();
         _cameraController = FindObjectOfType<CameraController>();
         speechbubbleBackground = transform.Find("background").gameObject;
@@ -87,7 +85,7 @@ public class SpeechbubbleController : MonoBehaviour
         taksIndicatorBackground.SetActive(show);
     }
 
-    void PlayerEnteredArea(Collider playerCollider)
+    void PlayerEnteredArea(object sender, Collider playerCollider)
     {
         if (player is null)
         {
@@ -100,7 +98,7 @@ public class SpeechbubbleController : MonoBehaviour
         }
     }
 
-    void PlayerExitedArea(Collider playerCollider)
+    void PlayerExitedArea(object sender, Collider playerCollider)
     {
         if (player is not null && player == playerCollider.gameObject)
         {
@@ -115,13 +113,13 @@ public class SpeechbubbleController : MonoBehaviour
 
     void OnEnable()
     {
-        sensorController.OnTagEnter += PlayerEnteredArea;
-        sensorController.OnTagExit += PlayerExitedArea;
+        _playerSensor.TagEntered += PlayerEnteredArea;
+        _playerSensor.TagExited += PlayerExitedArea;
     }
 
     void OnDisable()
     {
-        sensorController.OnTagEnter -= PlayerEnteredArea;
-        sensorController.OnTagExit -= PlayerExitedArea;
+        _playerSensor.TagEntered -= PlayerEnteredArea;
+        _playerSensor.TagExited -= PlayerExitedArea;
     }
 }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 695860585057355751}
   - component: {fileID: 1657588252692541017}
-  - component: {fileID: 105125134460383286}
+  - component: {fileID: 1485114026618431717}
   m_Layer: 0
   m_Name: PlayerSensor
   m_TagString: Untagged
@@ -46,7 +46,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 3
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &105125134460383286
+--- !u!114 &1485114026618431717
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -55,7 +55,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2412770432636810438}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e8a3409215649b419f08c79dc250805, type: 3}
+  m_Script: {fileID: 11500000, guid: b559efa7793473445a213bb8bb0e8bc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  watchedTag: Player
+  _watchedTag: Player

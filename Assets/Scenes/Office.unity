@@ -218,6 +218,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7926849060215563138, guid: 02bfc0ba2e110224fb3de79aa7439be2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.02
+      objectReference: {fileID: 0}
     - target: {fileID: 8432163937279434270, guid: 02bfc0ba2e110224fb3de79aa7439be2, type: 3}
       propertyPath: m_fontColor.b
       value: 0.023317888
@@ -2142,6 +2146,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7926849060215563138, guid: 02bfc0ba2e110224fb3de79aa7439be2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.21
+      objectReference: {fileID: 0}
     - target: {fileID: 8432163937279434270, guid: 02bfc0ba2e110224fb3de79aa7439be2, type: 3}
       propertyPath: m_fontColor.b
       value: 0.023317888
@@ -3928,6 +3936,10 @@ PrefabInstance:
     - target: {fileID: 5715066475347166787, guid: 318408746d72e7e4895ecc86fc4c7bdb, type: 3}
       propertyPath: itemName
       value: Keyboard
+      objectReference: {fileID: 0}
+    - target: {fileID: 5715066475347166787, guid: 318408746d72e7e4895ecc86fc4c7bdb, type: 3}
+      propertyPath: _itemName
+      value: Bildschirm
       objectReference: {fileID: 0}
     - target: {fileID: 5715066475347166788, guid: 318408746d72e7e4895ecc86fc4c7bdb, type: 3}
       propertyPath: m_RootOrder
@@ -6543,6 +6555,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7926849060215563138, guid: 02bfc0ba2e110224fb3de79aa7439be2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.59
+      objectReference: {fileID: 0}
     - target: {fileID: 8432163937279434270, guid: 02bfc0ba2e110224fb3de79aa7439be2, type: 3}
       propertyPath: m_fontColor.b
       value: 0.023317888
@@ -6943,6 +6959,10 @@ PrefabInstance:
     - target: {fileID: 7926849060215563138, guid: 02bfc0ba2e110224fb3de79aa7439be2, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7926849060215563138, guid: 02bfc0ba2e110224fb3de79aa7439be2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.27
       objectReference: {fileID: 0}
     - target: {fileID: 8432163937279434270, guid: 02bfc0ba2e110224fb3de79aa7439be2, type: 3}
       propertyPath: m_fontColor.b
@@ -9237,6 +9257,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7926849060215563138, guid: 02bfc0ba2e110224fb3de79aa7439be2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.19
+      objectReference: {fileID: 0}
     - target: {fileID: 8432163937279434270, guid: 02bfc0ba2e110224fb3de79aa7439be2, type: 3}
       propertyPath: m_fontColor.b
       value: 0.023317888
@@ -9681,6 +9705,10 @@ PrefabInstance:
     - target: {fileID: 7926849060215563138, guid: 02bfc0ba2e110224fb3de79aa7439be2, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7926849060215563138, guid: 02bfc0ba2e110224fb3de79aa7439be2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.58
       objectReference: {fileID: 0}
     - target: {fileID: 8432163937279434270, guid: 02bfc0ba2e110224fb3de79aa7439be2, type: 3}
       propertyPath: m_fontColor.b
@@ -10134,6 +10162,10 @@ PrefabInstance:
     - target: {fileID: 7926849060215563138, guid: 02bfc0ba2e110224fb3de79aa7439be2, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7926849060215563138, guid: 02bfc0ba2e110224fb3de79aa7439be2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 8432163937279434270, guid: 02bfc0ba2e110224fb3de79aa7439be2, type: 3}
       propertyPath: m_fontColor.b
@@ -14672,6 +14704,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7926849060215563138, guid: 02bfc0ba2e110224fb3de79aa7439be2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.14
+      objectReference: {fileID: 0}
     - target: {fileID: 8432163937279434270, guid: 02bfc0ba2e110224fb3de79aa7439be2, type: 3}
       propertyPath: m_fontColor.b
       value: 0.023317888
@@ -14772,6 +14808,10 @@ PrefabInstance:
     - target: {fileID: 7926849060215563138, guid: 02bfc0ba2e110224fb3de79aa7439be2, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7926849060215563138, guid: 02bfc0ba2e110224fb3de79aa7439be2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.2
       objectReference: {fileID: 0}
     - target: {fileID: 8432163937279434270, guid: 02bfc0ba2e110224fb3de79aa7439be2, type: 3}
       propertyPath: m_fontColor.b
@@ -15638,6 +15678,10 @@ PrefabInstance:
     - target: {fileID: 5715066475347166787, guid: 318408746d72e7e4895ecc86fc4c7bdb, type: 3}
       propertyPath: itemName
       value: Igel
+      objectReference: {fileID: 0}
+    - target: {fileID: 5715066475347166787, guid: 318408746d72e7e4895ecc86fc4c7bdb, type: 3}
+      propertyPath: _itemName
+      value: Keyboard
       objectReference: {fileID: 0}
     - target: {fileID: 5715066475347166788, guid: 318408746d72e7e4895ecc86fc4c7bdb, type: 3}
       propertyPath: m_RootOrder
@@ -16783,6 +16827,10 @@ PrefabInstance:
     - target: {fileID: 7926849060215563138, guid: 02bfc0ba2e110224fb3de79aa7439be2, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7926849060215563138, guid: 02bfc0ba2e110224fb3de79aa7439be2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.19
       objectReference: {fileID: 0}
     - target: {fileID: 8432163937279434270, guid: 02bfc0ba2e110224fb3de79aa7439be2, type: 3}
       propertyPath: m_fontColor.b
@@ -18121,6 +18169,10 @@ PrefabInstance:
     - target: {fileID: 7926849060215563138, guid: 02bfc0ba2e110224fb3de79aa7439be2, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7926849060215563138, guid: 02bfc0ba2e110224fb3de79aa7439be2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.06
       objectReference: {fileID: 0}
     - target: {fileID: 8432163937279434270, guid: 02bfc0ba2e110224fb3de79aa7439be2, type: 3}
       propertyPath: m_fontColor.b
@@ -26826,6 +26878,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1717424872}
     m_Modifications:
+    - target: {fileID: 2010159089522307739, guid: 318408746d72e7e4895ecc86fc4c7bdb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5715066475347166787, guid: 318408746d72e7e4895ecc86fc4c7bdb, type: 3}
+      propertyPath: _itemName
+      value: Igel
+      objectReference: {fileID: 0}
     - target: {fileID: 5715066475347166788, guid: 318408746d72e7e4895ecc86fc4c7bdb, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -27252,6 +27312,10 @@ PrefabInstance:
     - target: {fileID: 7926849060215563138, guid: 02bfc0ba2e110224fb3de79aa7439be2, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7926849060215563138, guid: 02bfc0ba2e110224fb3de79aa7439be2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.36
       objectReference: {fileID: 0}
     - target: {fileID: 8432163937279434270, guid: 02bfc0ba2e110224fb3de79aa7439be2, type: 3}
       propertyPath: m_fontColor.b

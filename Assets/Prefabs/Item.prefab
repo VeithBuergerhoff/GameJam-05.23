@@ -117,7 +117,7 @@ MonoBehaviour:
     Name: 
     PreferredHotkey: 0
   itemLabelPrefab: {fileID: 3288535821056988439, guid: 476c6f6c0b6a78143b9b03202ca4dc13, type: 3}
-  PlayerSensor: {fileID: 8543241264888015375}
+  _playerSensor: {fileID: 4857270809572455980}
 --- !u!54 &899546452409202908
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -238,15 +238,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerSensor
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 105125134460383286, guid: d53ba50024606fb4f8caa58d92e47999, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d53ba50024606fb4f8caa58d92e47999, type: 3}
+--- !u!114 &4857270809572455980 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1485114026618431717, guid: d53ba50024606fb4f8caa58d92e47999, type: 3}
+  m_PrefabInstance: {fileID: 6337779937947819721}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b559efa7793473445a213bb8bb0e8bc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6799415939339131182 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 695860585057355751, guid: d53ba50024606fb4f8caa58d92e47999, type: 3}
-  m_PrefabInstance: {fileID: 6337779937947819721}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &8543241264888015375 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2412770432636810438, guid: d53ba50024606fb4f8caa58d92e47999, type: 3}
   m_PrefabInstance: {fileID: 6337779937947819721}
   m_PrefabAsset: {fileID: 0}

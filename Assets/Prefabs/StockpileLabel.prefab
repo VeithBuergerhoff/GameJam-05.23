@@ -258,6 +258,7 @@ MonoBehaviour:
   padding: 40
   description: Description
   hotkey: 32
+  _rectTransform: {fileID: 6258605863421179207}
 --- !u!1 &6258605863614668606
 GameObject:
   m_ObjectHideFlags: 0

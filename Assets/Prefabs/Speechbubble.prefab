@@ -435,7 +435,7 @@ MonoBehaviour:
   indicatorSlider: {fileID: 1093686105210418723}
   verticalPositionOffset: 2
   padding: 24
-  playerSensor: {fileID: 1590204090997774865}
+  _playerSensor: {fileID: 2591333988285072946}
 --- !u!1 &6570394778529712656
 GameObject:
   m_ObjectHideFlags: 0
@@ -710,11 +710,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d53ba50024606fb4f8caa58d92e47999, type: 3}
---- !u!1 &1590204090997774865 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2412770432636810438, guid: d53ba50024606fb4f8caa58d92e47999, type: 3}
+--- !u!114 &2591333988285072946 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1485114026618431717, guid: d53ba50024606fb4f8caa58d92e47999, type: 3}
   m_PrefabInstance: {fileID: 3993122624563211991}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b559efa7793473445a213bb8bb0e8bc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &4522276332186396976 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 695860585057355751, guid: d53ba50024606fb4f8caa58d92e47999, type: 3}

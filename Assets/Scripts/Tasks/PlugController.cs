@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlugController : MonoBehaviour
@@ -9,6 +8,12 @@ public class PlugController : MonoBehaviour
 
     [SerializeField]
     private AudioSource _gameMusic;
+
+    [SerializeField]
+    private SensorController _playerSensor;
+
+    [SerializeField]
+    private LabelController _label;
 
     public IEnumerator Pull()
     {
@@ -22,11 +27,43 @@ public class PlugController : MonoBehaviour
         StartCoroutine(GameManager.Instance.WinGame());
     }
 
+    private void PlayerEnteredArea(object sender, Collider playerCollider)
+    {
+        ShowLabel(true);
+    }
+
+    private void PlayerExitedArea(object sender, Collider playerCollider)
+    {
+        ShowLabel(false);
+    }
+
+    private void ShowLabel(bool show)
+    {
+        _label.gameObject.SetActive(show);
+    }
+
+    void Start()
+    {
+        _label.SetText("Stecker ziehen", 'l');
+    }
+
     void Update()
     {
-        if (Input.GetKey("l"))
+        if (Input.GetKey("l") && _playerSensor.isEntryInZone)
         {
             StartCoroutine(Pull());
         }
+    }
+
+    void OnEnable()
+    {
+        _playerSensor.TagEntered += PlayerEnteredArea;
+        _playerSensor.TagExited += PlayerExitedArea;
+    }
+
+    void OnDisable()
+    {
+        _playerSensor.TagEntered -= PlayerEnteredArea;
+        _playerSensor.TagExited -= PlayerExitedArea;
     }
 }

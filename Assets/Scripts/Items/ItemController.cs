@@ -21,13 +21,10 @@ public class ItemController : MonoBehaviour, IInteractableItem
     private LabelController itemLabelController;
 
     [SerializeField]
-    private GameObject PlayerSensor;
-    private SensorController sensorController;
+    private SensorController _playerSensor;
 
-    void Awake()
+    void Start()
     {
-        sensorController = PlayerSensor.GetComponent<SensorController>();
-
         itemLabelInstance = Instantiate(itemLabelPrefab, transform);
         itemLabelInstance.SetActive(false);
 
@@ -36,13 +33,13 @@ public class ItemController : MonoBehaviour, IInteractableItem
         itemLabelController.SetText(item.Name, item.PreferredHotkey);
     }
 
-    void PlayerEnteredArea(Collider playerCollider)
-    {
+    void PlayerEnteredArea(object sender, Collider playerCollider)
+    {           
         playerCollider.gameObject.GetComponent<ItemCarrier>().registerInteractableItem(this);
         ShowLabel(true);
     }
 
-    void PlayerExitedArea(Collider playerCollider)
+    void PlayerExitedArea(object sender, Collider playerCollider)
     {
         playerCollider.gameObject.GetComponent<ItemCarrier>().deregisterInteractableItem(this);
         ShowLabel(false);
@@ -76,6 +73,7 @@ public class ItemController : MonoBehaviour, IInteractableItem
         return this;
     }
     #endregion IInteractableItem
+
     public void ShowLabel(bool show)
     {
         itemLabelInstance.SetActive(show);
@@ -83,13 +81,13 @@ public class ItemController : MonoBehaviour, IInteractableItem
 
     void OnEnable()
     {
-        sensorController.OnTagEnter += PlayerEnteredArea;
-        sensorController.OnTagExit += PlayerExitedArea;
+        _playerSensor.TagEntered += PlayerEnteredArea;
+        _playerSensor.TagExited += PlayerExitedArea;
     }
 
     void OnDisable()
     {
-        sensorController.OnTagEnter -= PlayerEnteredArea;
-        sensorController.OnTagExit -= PlayerExitedArea;
+        _playerSensor.TagEntered -= PlayerEnteredArea;
+        _playerSensor.TagExited -= PlayerExitedArea;
     }
 }
