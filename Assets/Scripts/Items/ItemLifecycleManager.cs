@@ -41,12 +41,12 @@ public class ItemLifecycleManager : MonoBehaviour
 
     public ItemController SpawnItem(Vector3 position, Quaternion rotation, ItemController.Item initialValues)
     {
-        if (_itemPool.Any())
+        if (_itemPool.Any(item => !item.isActiveAndEnabled))
         {
-            var item = _itemPool.Single();
+            var item = _itemPool.First();
             item.transform.SetParent(null);
             item.gameObject.transform.SetPositionAndRotation(position, rotation);
-            item.transform.parent.name = $"Item: {initialValues.Name}";
+            item.gameObject.name = $"Item: {initialValues.Name}";
             item.SetText( initialValues );
             item.gameObject.SetActive(true);
             return item;

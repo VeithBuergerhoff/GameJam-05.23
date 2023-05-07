@@ -46,7 +46,22 @@ public class StockpileController : MonoBehaviour
                     spwanpoint.position,                
                     new ItemController.Item() { Name = itemName, PreferredHotkey = itemName[0] }
                 );
-                    
+                ItemLifecycleManager.Instance.SpawnItem(
+                    spwanpoint.position,                
+                    new ItemController.Item() { Name = itemName, PreferredHotkey = itemName[0] }
+                );
+                ItemLifecycleManager.Instance.SpawnItem(
+                    spwanpoint.position,                
+                    new ItemController.Item() { Name = itemName, PreferredHotkey = itemName[0] }
+                );
+                ItemLifecycleManager.Instance.SpawnItem(
+                    spwanpoint.position,                
+                    new ItemController.Item() { Name = itemName, PreferredHotkey = itemName[0] }
+                );
+                ItemLifecycleManager.Instance.SpawnItem(
+                    spwanpoint.position,                
+                    new ItemController.Item() { Name = itemName, PreferredHotkey = itemName[0] }
+                );
             }
         }
     }
