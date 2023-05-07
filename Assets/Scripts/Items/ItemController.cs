@@ -1,6 +1,6 @@
-using System.Linq;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ItemController : MonoBehaviour, IInteractableItem
@@ -12,7 +12,7 @@ public class ItemController : MonoBehaviour, IInteractableItem
     }
 
     [SerializeField]
-    private Item _item;
+    public Item item;
 
     [SerializeField]
     private GameObject itemLabelPrefab;
@@ -30,7 +30,7 @@ public class ItemController : MonoBehaviour, IInteractableItem
 
         itemLabelInstance = Instantiate(itemLabelPrefab, transform);
         itemLabelInstance.SetActive(false);
-        itemLabelInstance.GetComponent<LabelController>().SetText(_item.Name, _item.Name[0]);
+        itemLabelInstance.GetComponent<LabelController>().SetText(item.Name, item.Name[0]);
     }
 
     void PlayerEnteredArea(Collider playerCollider)
@@ -47,15 +47,15 @@ public class ItemController : MonoBehaviour, IInteractableItem
 
     public char GetHotkey(int n = 0)
     {
-        if (n < _item.Name.Length)
+        if (n < item.Name.Length)
         {
-            itemLabelInstance.GetComponent<LabelController>().SetHotkey(_item.Name.ToUpper()[n]);
-            return _item.Name.ToUpper()[n];
+            itemLabelInstance.GetComponent<LabelController>().SetHotkey(item.Name.ToUpper()[n]);
+            return item.Name.ToUpper()[n];
         }
         else
         {
             throw new IndexOutOfRangeException(
-                $"Itemname '${_item.Name}' does not have ${n} letters, use a smaller index"
+                $"Itemname '${item.Name}' does not have ${n} letters, use a smaller index"
             );
         }
     }
@@ -63,7 +63,7 @@ public class ItemController : MonoBehaviour, IInteractableItem
     public char GetUniqueHotkey(IEnumerable<char> usedHotkeys)
     {
         char hotkey;
-        var uniqueCharsInName = _item.Name.ToUpper().Except(usedHotkeys);
+        var uniqueCharsInName = item.Name.ToUpper().Except(usedHotkeys);
         if (uniqueCharsInName.Any())
         {
             hotkey = uniqueCharsInName.First();

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -5,6 +6,9 @@ using UnityEngine;
 
 public class TaskHolderController : MonoBehaviour
 {
+    [SerializeField]
+    private DropOffController _dropOffController;
+
     private Task _currentTask = null;
 
     public bool HasTask => _currentTask is not null;
@@ -20,6 +24,25 @@ public class TaskHolderController : MonoBehaviour
     void Awake()
     {
         _textField = GetComponentInChildren<TextMeshProUGUI>();
+    }
+
+    void OnEnable()
+    {
+        _dropOffController.ItemEnter += OnItemEnteredDropOffZone;
+    }
+
+    void OnDisable()
+    {
+        _dropOffController.ItemEnter -= OnItemEnteredDropOffZone;
+    }
+
+    private void OnItemEnteredDropOffZone(object sender, ItemController e)
+    {
+        if (e.item.Name == _currentTask?.WantedItemName)
+        {
+            CompleteTask();
+            ItemLifecycleManager.Instance.RemoveItem(e);
+        }
     }
 
     void Update()
