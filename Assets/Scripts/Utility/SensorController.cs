@@ -10,22 +10,22 @@ public class SensorController : MonoBehaviour
     public event EventHandler<Collider> TagEntered;
     public event EventHandler<Collider> TagExited;
 
-    private bool _isTagDetected = false;
+    public bool isEntryInZone = false;
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(_watchedTag) && !_isTagDetected)
+        if (other.CompareTag(_watchedTag) && !isEntryInZone)
         {
-            _isTagDetected = true;
+            isEntryInZone = true;
             TagEntered?.Invoke(this, other);
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag(_watchedTag) && _isTagDetected)
+        if (other.CompareTag(_watchedTag) && isEntryInZone)
         {
-            _isTagDetected = false;
+            isEntryInZone = false;
             TagExited?.Invoke(this, other);
         }
     }

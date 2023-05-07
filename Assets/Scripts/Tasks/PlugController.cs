@@ -49,7 +49,7 @@ public class PlugController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey("l"))
+        if (Input.GetKey("l") && _playerSensor.isEntryInZone)
         {
             StartCoroutine(Pull());
         }
