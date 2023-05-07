@@ -32,7 +32,7 @@ public class SpeechbubbleController : MonoBehaviour
 
     [SerializeField]
     [Range(0, 10)]
-    public float verticalPositionOffset = 2f;
+    public float verticalPositionOffset = 4f;
 
     [SerializeField]
     public int padding = 24;
@@ -41,7 +41,7 @@ public class SpeechbubbleController : MonoBehaviour
     private CameraController _cameraController;
 
     private GameObject speechbubbleBackground;
-    private GameObject taksIndicatorBackground;
+    private GameObject taskIndicatorBackground;
 
     [SerializeField]
     private SensorController _playerSensor;
@@ -52,7 +52,8 @@ public class SpeechbubbleController : MonoBehaviour
         _rectTransform = GetComponent<RectTransform>();
         _cameraController = FindObjectOfType<CameraController>();
         speechbubbleBackground = transform.Find("background").gameObject;
-        taksIndicatorBackground = transform.Find("taskIndikatorBackground").gameObject;
+        taskIndicatorBackground = transform.Find("taskIndikatorBackground").gameObject;
+        Debug.Log(taskIndicatorBackground);
     }
 
     void Update()
@@ -75,14 +76,14 @@ public class SpeechbubbleController : MonoBehaviour
         );
     }
 
-    private void ShowLabel(bool show)
+    public void ShowLabel(bool show)
     {
         speechbubbleBackground.SetActive(show);
     }
 
-    private void ShowIndicator(bool show)
+    public void ShowIndicator(bool show)
     {
-        taksIndicatorBackground.SetActive(show);
+        taskIndicatorBackground.SetActive(show);
     }
 
     void PlayerEnteredArea(object sender, Collider playerCollider)

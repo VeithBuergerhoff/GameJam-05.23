@@ -56,20 +56,22 @@ public class TaskHolderController : MonoBehaviour
             PatienceLeft -= Time.deltaTime;
         }
         var patiencePercentage = (PatienceLeft / _currentTask?.Patience) ?? 0;
-        
+
         if (_overlayEntry is not null)
         {
             _overlayEntry.textField.text = _currentTask?.Name ?? string.Empty;
             _overlayEntry.timeSlider.value = patiencePercentage;
-        }        
+        }
 
         if (HasTask && HasPatienceLeft)
         {
             _speechbubbleController.HasTask = true;
-            _speechbubbleController.SetText(
-                _currentTask?.Name ?? string.Empty,
-                patiencePercentage
-            );
+            _speechbubbleController.SetText(_currentTask?.Name ?? string.Empty, patiencePercentage);
+        }
+        else
+        {
+            _speechbubbleController.HasTask = false;
+            _speechbubbleController.ShowLabel(false);
         }
     }
 
