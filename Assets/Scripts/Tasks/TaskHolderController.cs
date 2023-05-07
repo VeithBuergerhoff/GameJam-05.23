@@ -9,15 +9,19 @@ public class TaskHolderController : MonoBehaviour
     [SerializeField]
     private DropOffController _dropOffController;
 
+    private TaskOverlayEntry _overlayEntry;
+
     private Task _currentTask = null;
 
     public bool HasTask => _currentTask is not null;
 
-    public bool HasPatienceLeft => _patienceLeft > 0;
+    public bool HasPatienceLeft => PatienceLeft > 0;
 
-    private float _patienceLeft;
+    public float PatienceLeft { get; private set; }
 
-    private string StatusMessage => $"{_currentTask.Name}:{_patienceLeft:0}";
+    public float? MaxPatience => _currentTask?.Patience;
+
+    private string StatusMessage => $"{_currentTask.Name}:{PatienceLeft:0}";
 
     private TextMeshProUGUI _textField;
 
@@ -47,9 +51,16 @@ public class TaskHolderController : MonoBehaviour
 
     void Update()
     {
-        if (_patienceLeft > 0)
+        if (_overlayEntry is not null)
         {
-            _patienceLeft -= Time.deltaTime;
+            _overlayEntry._textField.text = _currentTask?.Name ?? string.Empty;
+            var patiencePercentage = PatienceLeft / _currentTask?.Patience;
+            _overlayEntry._timeSlider.value = patiencePercentage ?? 0;
+        }
+
+        if (PatienceLeft > 0)
+        {
+            PatienceLeft -= Time.deltaTime;
         }
 
         if (!HasTask)
@@ -69,11 +80,23 @@ public class TaskHolderController : MonoBehaviour
     public void QueueTask(Task task)
     {
         _currentTask = task;
-        _patienceLeft = task.Patience;
+        PatienceLeft = task.Patience;
     }
 
     public void CompleteTask()
     {
         _currentTask = null;
+        Destroy(_overlayEntry.gameObject);
+    }
+
+    public void SetOverlayItem(TaskOverlayEntry taskOverlayEntry)
+    {
+        if (_overlayEntry is not null)
+        {
+            Destroy(_overlayEntry.gameObject);
+            _overlayEntry = null;
+        }
+
+        _overlayEntry = taskOverlayEntry;
     }
 }

@@ -7,13 +7,18 @@ public class PlugController : MonoBehaviour
     [SerializeField]
     private Rigidbody _plug;
 
-    public void Pull()
+    [SerializeField]
+    private AudioSource _gameMusic;
+
+    public IEnumerator Pull()
     {
         _plug.isKinematic = false;
         _plug.useGravity = true;
 
         _plug.AddForce(Vector3.back);
-
+        _gameMusic.enabled = false;
+        yield return new WaitForSeconds(3);
+        
         StartCoroutine(GameManager.Instance.WinGame());
     }
 
@@ -21,7 +26,7 @@ public class PlugController : MonoBehaviour
     {
         if (Input.GetKey("l"))
         {
-            Pull();
+            StartCoroutine(Pull());
         }
     }
 }

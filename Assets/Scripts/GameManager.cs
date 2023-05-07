@@ -51,9 +51,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator WinGame()
     {
-        yield return new WaitForSeconds(3);
-
-        StartCoroutine(LoadScene(_gameWonSceneIndex));
+        return LoadScene(_gameWonSceneIndex);
     }
 
     private IEnumerator LoadScene(int index)

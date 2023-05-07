@@ -8,6 +8,12 @@ public class TaskManager : MonoBehaviour
     public static TaskManager Instance { get; private set; }
 
     [SerializeField]
+    private GameObject _taskOverlay;
+
+    [SerializeField]
+    private GameObject _overlayTaskTemplate;
+
+    [SerializeField]
     private int _interval = 30;
 
     [SerializeField]
@@ -52,6 +58,14 @@ public class TaskManager : MonoBehaviour
         }
     }
 
+    private TaskOverlayEntry AddOverlayItem()
+    {
+        var newOverlayItem = Instantiate(_overlayTaskTemplate);
+        newOverlayItem.transform.SetParent(_taskOverlay.transform);
+        
+        return newOverlayItem.GetComponent<TaskOverlayEntry>();
+    }
+
     private void QueueTasks()
     {
         Debug.Log("Time to queue some tasks");
@@ -65,6 +79,7 @@ public class TaskManager : MonoBehaviour
         foreach (var taskHolder in availableTaskHolders)
         {
             taskHolder.QueueTask(_randomTasks[_taskOffset++]);
+            taskHolder.SetOverlayItem(AddOverlayItem());
         }
     }
 
