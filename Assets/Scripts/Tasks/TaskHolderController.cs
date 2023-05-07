@@ -51,29 +51,33 @@ public class TaskHolderController : MonoBehaviour
 
     void Update()
     {
-        if (_overlayEntry is not null)
-        {
-            _overlayEntry._textField.text = _currentTask?.Name ?? string.Empty;
-            var patiencePercentage = PatienceLeft / _currentTask?.Patience;
-            _overlayEntry._timeSlider.value = patiencePercentage ?? 0;
-        }
-
         if (PatienceLeft > 0)
         {
             PatienceLeft -= Time.deltaTime;
         }
+        var patiencePercentage = PatienceLeft / _currentTask?.Patience;
+        
+        if (_overlayEntry is not null)
+        {
+            _overlayEntry._textField.text = _currentTask?.Name ?? string.Empty;
+            _overlayEntry._timeSlider.value = patiencePercentage ?? 0;
+        }        
 
         if (!HasTask)
         {
-            _speechbubbleController.SetText(":)");
+            _speechbubbleController.SetText(":)", patiencePercentage ?? 0);
         }
         else if (HasPatienceLeft)
         {
-            _speechbubbleController.SetText(StatusMessage);
+            _speechbubbleController.HasTask = true;
+            _speechbubbleController.SetText(
+                _currentTask?.Name ?? string.Empty,
+                patiencePercentage ?? 0
+            );
         }
         else
         {
-            _speechbubbleController.SetText(">:(");
+            _speechbubbleController.SetText(">:(", patiencePercentage ?? 0);
         }
     }
 

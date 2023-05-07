@@ -579,9 +579,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemPrefab: {fileID: 2153119455363181214, guid: 92913ba9252063142984c96ae526619b, type: 3}
   labelPrefab: {fileID: 6258605863421179206, guid: 2a5a8147f23e3164ba63cd9b74a0cb69, type: 3}
+  itemSpwanpoint: {fileID: 3168085930990744657}
   itemName: Bildschirm
   PlayerSensor: {fileID: 7188853626111256910}
-  spwanpoint: {fileID: 3168085930990744657}
 --- !u!1 &5715066475432421623
 GameObject:
   m_ObjectHideFlags: 0

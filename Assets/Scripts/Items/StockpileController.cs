@@ -12,22 +12,22 @@ public class StockpileController : MonoBehaviour
     [SerializeField]
     private GameObject labelPrefab;
     private GameObject labelInstance;
+    
+    [SerializeField]
+    private Transform itemSpwanpoint;
 
     [SerializeField]
     private string itemName;
 
     [SerializeField]
-    private GameObject PlayerSensor;
-    [SerializeField]
-    private Transform spwanpoint;
-    
-    private SensorController sensorController;
+    private GameObject PlayerSensor;  
+    private SensorController sensorController;    
     private GameObject player;
     
 
     void Awake()
     {
-        sensorController = PlayerSensor.GetComponent<SensorController>();        
+        sensorController = PlayerSensor.GetComponent<SensorController>();
 
         labelInstance = Instantiate(labelPrefab, transform);
         labelInstance.SetActive(false);
@@ -41,23 +41,23 @@ public class StockpileController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 ItemLifecycleManager.Instance.SpawnItem(
-                    spwanpoint.position,                
+                    itemSpwanpoint.position,                
                     new ItemController.Item() { Name = itemName, PreferredHotkey = itemName[0] }
                 );
                 ItemLifecycleManager.Instance.SpawnItem(
-                    spwanpoint.position,                
+                    itemSpwanpoint.position,                
                     new ItemController.Item() { Name = itemName, PreferredHotkey = itemName[0] }
                 );
                 ItemLifecycleManager.Instance.SpawnItem(
-                    spwanpoint.position,                
+                    itemSpwanpoint.position,                
                     new ItemController.Item() { Name = itemName, PreferredHotkey = itemName[0] }
                 );
                 ItemLifecycleManager.Instance.SpawnItem(
-                    spwanpoint.position,                
+                    itemSpwanpoint.position,                
                     new ItemController.Item() { Name = itemName, PreferredHotkey = itemName[0] }
                 );
                 ItemLifecycleManager.Instance.SpawnItem(
-                    spwanpoint.position,                
+                    itemSpwanpoint.position,                
                     new ItemController.Item() { Name = itemName, PreferredHotkey = itemName[0] }
                 );
             }

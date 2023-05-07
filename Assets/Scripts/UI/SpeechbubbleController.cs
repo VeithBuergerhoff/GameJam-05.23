@@ -3,11 +3,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class SpeechbubbleController : MonoBehaviour
 {
+    private bool _hasTask = false;
+    public bool HasTask
+    {
+        get { return _hasTask; }
+        set { 
+            if(_hasTask != value){
+                if(player is null){
+                    ShowIndicator(true);
+                }
+            }
+            _hasTask = value;
+        }
+    }
+
     [SerializeField]
     private TextMeshProUGUI descriptionField;
+
+    [SerializeField]
+    private Slider indicatorSlider;
 
     [SerializeField]
     [Range(0, 10)]
@@ -20,10 +38,20 @@ public class SpeechbubbleController : MonoBehaviour
     private int preferredWidth = 256;
 
     private RectTransform rectTransform;
+    private GameObject speechbubbleBackground;
+    private GameObject taksIndicatorBackground;
+
+    [SerializeField]
+    private GameObject playerSensor;
+    private SensorController sensorController;
+    private GameObject player;
 
     void Awake()
     {
+        sensorController = playerSensor.GetComponent<SensorController>();
         rectTransform = GetComponent<RectTransform>();
+        speechbubbleBackground = transform.Find("background").gameObject;
+        taksIndicatorBackground = transform.Find("taskIndikatorBackground").gameObject;
     }
 
     void Update()
@@ -34,9 +62,10 @@ public class SpeechbubbleController : MonoBehaviour
         );
     }
 
-    public void SetText(string description)
+    public void SetText(string description, float patiencePercentage)
     {
         descriptionField.SetText(description);
+        indicatorSlider.value = patiencePercentage;
         descriptionField.ForceMeshUpdate();
         var itemDescriptionBounds = descriptionField.GetRenderedValues();
         if (description == ":)" || description == ">:(")
@@ -45,15 +74,56 @@ public class SpeechbubbleController : MonoBehaviour
                 RectTransform.Axis.Horizontal,
                 itemDescriptionBounds.x + padding
             );
-        } else {
-            rectTransform.SetSizeWithCurrentAnchors(
-                RectTransform.Axis.Horizontal,
-                preferredWidth
-            );
+        }
+        else
+        {
+            rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, preferredWidth);
         }
         rectTransform.SetSizeWithCurrentAnchors(
             RectTransform.Axis.Vertical,
             itemDescriptionBounds.y + padding
         );
+    }
+
+    private void ShowLabel(bool show)
+    {
+        speechbubbleBackground.SetActive(show);
+    }
+
+    private void ShowIndicator(bool show)
+    {
+        taksIndicatorBackground.SetActive(show);
+    }
+
+    void PlayerEnteredArea(Collider playerCollider)
+    {
+        if (player is null)
+        {
+            player = playerCollider.gameObject;
+            ShowLabel(true);
+            ShowIndicator(false);
+        }
+    }
+
+    void PlayerExitedArea(Collider playerCollider)
+    {
+        if (player is not null && player == playerCollider.gameObject)
+        {
+            player = null;
+            ShowLabel(false);
+            ShowIndicator(true);
+        }
+    }
+
+    void OnEnable()
+    {
+        sensorController.OnTagEnter += PlayerEnteredArea;
+        sensorController.OnTagExit += PlayerExitedArea;
+    }
+
+    void OnDisable()
+    {
+        sensorController.OnTagEnter -= PlayerEnteredArea;
+        sensorController.OnTagExit -= PlayerExitedArea;
     }
 }
