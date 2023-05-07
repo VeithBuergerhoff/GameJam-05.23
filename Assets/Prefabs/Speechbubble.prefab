@@ -401,7 +401,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &6558750658315394552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -433,7 +433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   descriptionField: {fileID: 8432163937279434270}
   indicatorSlider: {fileID: 1093686105210418723}
-  verticalPositionOffset: 2
+  verticalPositionOffset: 4
   padding: 24
   _playerSensor: {fileID: 2591333988285072946}
 --- !u!1 &6570394778529712656
