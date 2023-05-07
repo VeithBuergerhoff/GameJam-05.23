@@ -27,9 +27,7 @@ public class StockpileController : MonoBehaviour
 
     void Awake()
     {
-        sensorController = PlayerSensor.GetComponent<SensorController>();
-        sensorController.OnTagEnter += PlayerEnteredArea;
-        sensorController.OnTagExit += PlayerExitedArea;
+        sensorController = PlayerSensor.GetComponent<SensorController>();        
 
         labelInstance = Instantiate(labelPrefab, transform);
         labelInstance.SetActive(false);
@@ -89,7 +87,13 @@ public class StockpileController : MonoBehaviour
         }
     }
 
-    ~StockpileController()
+    void OnEnable()
+    {
+        sensorController.OnTagEnter += PlayerEnteredArea;
+        sensorController.OnTagExit += PlayerExitedArea;
+    }
+
+    void OnDisable()
     {
         sensorController.OnTagEnter -= PlayerEnteredArea;
         sensorController.OnTagExit -= PlayerExitedArea;
