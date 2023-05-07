@@ -31,7 +31,9 @@ public class StockpileController : MonoBehaviour, IInteractableItem
         itemLabelInstance.GetComponent<LabelController>().SetText(itemName, itemName[0]);
     }
 
-    public string GetItemName(){
+    #region IInteractableItem
+    public string GetItemName()
+    {
         return itemName;
     }
 
@@ -47,6 +49,11 @@ public class StockpileController : MonoBehaviour, IInteractableItem
         return hotkey;
     }
 
+    public ItemController GetItemController() {
+        throw new NotImplementedException("todo: spwan item");
+    }
+    #endregion IInteractableItem
+
     public void ShowLabel(bool show)
     {
         itemLabelInstance.SetActive(show);
@@ -54,17 +61,13 @@ public class StockpileController : MonoBehaviour, IInteractableItem
 
     void PlayerEnteredArea(Collider playerCollider)
     {
-        playerCollider.gameObject
-            .GetComponent<ItemCarrier>()
-            .registerInteractableItem(this);
+        playerCollider.gameObject.GetComponent<ItemCarrier>().registerInteractableItem(this);
         ShowLabel(true);
     }
 
     void PlayerExitedArea(Collider playerCollider)
     {
-        playerCollider.gameObject
-            .GetComponent<ItemCarrier>()
-            .deregisterInteractableItem(this);
+        playerCollider.gameObject.GetComponent<ItemCarrier>().deregisterInteractableItem(this);
         ShowLabel(false);
     }
 

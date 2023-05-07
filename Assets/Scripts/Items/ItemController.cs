@@ -45,6 +45,7 @@ public class ItemController : MonoBehaviour, IInteractableItem
         ShowLabel(false);
     }
 
+    #region IInteractableItem
     public string GetItemName()
     {
         return item.Name;
@@ -62,6 +63,10 @@ public class ItemController : MonoBehaviour, IInteractableItem
         return hotkey;
     }
 
+    public ItemController GetItemController() {
+        return this;
+    }
+    #endregion IInteractableItem
     public void ShowLabel(bool show)
     {
         itemLabelInstance.SetActive(show);

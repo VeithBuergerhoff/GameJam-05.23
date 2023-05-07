@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,12 +19,11 @@ public class ItemCarrier : MonoBehaviour
     [SerializeField]
     private float _itemDropoffHeight = 1;
 
-    [SerializeField]
-    private string[] _pickupKeys;
+    private Dictionary<char, IInteractableItem> _interactableItems = new();
+    private Dictionary<char, KeyCode> _pickupKeyCache = new();
+    private int keyDelta = 32;
 
-    private ItemController _currentInteractableItem;
-
-    private readonly Dictionary<string, ItemController> _items = new();
+    private readonly Dictionary<char, ItemController> _items = new();
     private readonly ConcurrentQueue<ItemController> _colliderEnableQueue = new();
 
     void Awake()
@@ -41,18 +41,49 @@ public class ItemCarrier : MonoBehaviour
 
     void Update()
     {
-        foreach (var key in _pickupKeys)
+        foreach (var key in _interactableItems.Keys)
         {
-            if (Input.GetKeyDown(key))
+            KeyCode keyCode;
+            if (_pickupKeyCache.TryGetValue(key, out keyCode))
             {
-                PickUp(key);
-            }
+                if (Input.GetKeyDown(keyCode))
+                {
+                    PickUp(key);
+                }
 
-            if (Input.GetKeyUp(key))
+                if (Input.GetKeyUp(keyCode))
+                {
+                    Drop(key);
+                }
+            }
+            else
             {
-                Drop(key);
+                TryAddKeyCodeToCache(key);
             }
         }
+    }
+
+    private bool TryAddKeyCodeToCache(char key)
+    {
+        KeyCode keyCode;
+        int alphaValue = 0;
+        // mapping to KeyCode requires lowercase Chars
+        if (65 <= key && key <= 90)
+        {
+            alphaValue = key + keyDelta;
+        }
+        else if (97 <= key && key <= 122)
+        {
+            alphaValue = key;
+        }
+        if (alphaValue != 0)
+        {
+            keyCode = (KeyCode)Enum.Parse(typeof(KeyCode), alphaValue.ToString());
+            _pickupKeyCache.Add(key, keyCode);
+            return true;
+        }
+        keyCode = KeyCode.None;
+        return false;
     }
 
     void FixedUpdate()
@@ -71,30 +102,9 @@ public class ItemCarrier : MonoBehaviour
         }
     }
 
-    void OnTriggerStay(Collider other)
+    private void PickUp(char key)
     {
-        if (_currentInteractableItem is not null || !other.CompareTag("Interactable"))
-        {
-            return;
-        }
-
-        var item = other.GetComponentInParent<ItemController>();
-        if (item is null)
-        {
-            return;
-        }
-        _currentInteractableItem = item;
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        _currentInteractableItem = null;
-    }
-
-    private void PickUp(string key)
-    {
-        var item = _currentInteractableItem;
-        _currentInteractableItem = null;
+        ItemController item = _interactableItems[key].GetItemController();
 
         if (item is null)
         {
@@ -124,7 +134,7 @@ public class ItemCarrier : MonoBehaviour
         item.transform.localPosition = Vector3.up * stackPosition;
     }
 
-    private void Drop(string key)
+    private void Drop(char key)
     {
         if (_items.TryGetValue(key, out var item))
         {
@@ -137,8 +147,6 @@ public class ItemCarrier : MonoBehaviour
             item.transform.LookAt(transform, Vector3.up);
 
             _colliderEnableQueue.Enqueue(item);
-
-            _currentInteractableItem = null;
         }
 
         for (int i = 0; i < _items.Count(); i++)
@@ -147,24 +155,20 @@ public class ItemCarrier : MonoBehaviour
         }
     }
 
-    private Dictionary<IInteractableItem, char> interactableItems = new();
-
     public void registerInteractableItem(IInteractableItem item)
     {
-        if(!interactableItems.Values.Contains(item.GetCurrentHotkey())) {
-            interactableItems.Add(item, item.GetCurrentHotkey());
-        } else {
-            interactableItems.Add(item, item.GetUniqueHotkey(interactableItems.Values));
+        if (!_interactableItems.Keys.Contains(item.GetCurrentHotkey()))
+        {
+            _interactableItems.Add(item.GetCurrentHotkey(), item);
         }
-        
-        //Debug.Log($"register {interactableItems[item]}");
-        //Debug.Log($"registered entries {interactableItems.Keys.Count}");
+        else
+        {
+            _interactableItems.Add(item.GetUniqueHotkey(_interactableItems.Keys), item);
+        }
     }
 
     public void deregisterInteractableItem(IInteractableItem item)
     {
-        //Debug.Log($"remove {interactableItems[item]}");
-        interactableItems.Remove(item);
-        //Debug.Log($"registered entries {interactableItems.Keys.Count}");
+        _interactableItems.Remove(item.GetCurrentHotkey());
     }
 }
