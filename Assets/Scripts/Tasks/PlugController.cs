@@ -42,7 +42,7 @@ public class PlugController : MonoBehaviour
         _label.gameObject.SetActive(show);
     }
 
-    void Start()
+    void Awake()
     {
         _label.SetText("Stecker ziehen", 'l');
     }
