@@ -1997,6 +1997,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6636693283086996870, guid: 92913ba9252063142984c96ae526619b, type: 3}
+      propertyPath: _item.Name
+      value: Drucker
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92913ba9252063142984c96ae526619b, type: 3}
 --- !u!1 &228675601
@@ -5703,6 +5707,10 @@ PrefabInstance:
     - target: {fileID: 6204887302800638284, guid: 92913ba9252063142984c96ae526619b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6636693283086996870, guid: 92913ba9252063142984c96ae526619b, type: 3}
+      propertyPath: _item.Name
+      value: Bildschirm
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92913ba9252063142984c96ae526619b, type: 3}
@@ -10745,6 +10753,10 @@ PrefabInstance:
     - target: {fileID: 6204887302800638284, guid: 92913ba9252063142984c96ae526619b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6636693283086996870, guid: 92913ba9252063142984c96ae526619b, type: 3}
+      propertyPath: _item.Name
+      value: Kabel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92913ba9252063142984c96ae526619b, type: 3}
@@ -24668,7 +24680,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-72142
+  m_Name: pb_Mesh43446
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -25558,6 +25570,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6636693283086996870, guid: 92913ba9252063142984c96ae526619b, type: 3}
+      propertyPath: _item.Name
+      value: Kabel
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92913ba9252063142984c96ae526619b, type: 3}
 --- !u!1 &2022831463
@@ -25904,6 +25920,10 @@ PrefabInstance:
     - target: {fileID: 6204887302800638284, guid: 92913ba9252063142984c96ae526619b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6636693283086996870, guid: 92913ba9252063142984c96ae526619b, type: 3}
+      propertyPath: _item.Name
+      value: Drucker
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92913ba9252063142984c96ae526619b, type: 3}

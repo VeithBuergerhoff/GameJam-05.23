@@ -53,4 +53,10 @@ public class LabelController : MonoBehaviour
             itemDescriptionBounds.x + padding + keycapIcon.rect.size.x * keycapIcon.localScale.x
         );
     }
+
+    public void SetHotkey(char hotkey)
+    {
+        this.hotkey = hotkey;
+        iconText.SetText(hotkey.ToString());
+    }
 }

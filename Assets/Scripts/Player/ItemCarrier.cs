@@ -26,10 +26,8 @@ public class ItemCarrier : MonoBehaviour
     private readonly Dictionary<string, ItemController> _items = new();
     private readonly ConcurrentQueue<ItemController> _colliderEnableQueue = new();
 
-
     void Awake()
     {
-
         if (_rotatingTransform is null)
         {
             Debug.LogError($"{nameof(_rotatingTransform)} must be set");
@@ -79,7 +77,7 @@ public class ItemCarrier : MonoBehaviour
         {
             return;
         }
-        
+
         var item = other.GetComponentInParent<ItemController>();
         if (item is null)
         {
@@ -120,7 +118,7 @@ public class ItemCarrier : MonoBehaviour
         rigidbody.detectCollisions = true;
         rigidbody.isKinematic = true;
 
-        int stackPosition = _items.Count -1;
+        int stackPosition = _items.Count - 1;
 
         item.transform.SetParent(_itemParent);
         item.transform.localPosition = Vector3.up * stackPosition;
@@ -132,7 +130,10 @@ public class ItemCarrier : MonoBehaviour
         {
             _items.Remove(key);
             item.transform.parent = null;
-            item.transform.position = transform.position + _rotatingTransform.TransformDirection(Vector3.forward) * _itemDropoffDistance + new Vector3(0, _itemDropoffHeight, 0);
+            item.transform.position =
+                transform.position
+                + _rotatingTransform.TransformDirection(Vector3.forward) * _itemDropoffDistance
+                + new Vector3(0, _itemDropoffHeight, 0);
             item.transform.LookAt(transform, Vector3.up);
 
             _colliderEnableQueue.Enqueue(item);
@@ -140,8 +141,30 @@ public class ItemCarrier : MonoBehaviour
             _currentInteractableItem = null;
         }
 
-        for(int i = 0; i < _items.Count(); i++){
+        for (int i = 0; i < _items.Count(); i++)
+        {
             _items.Values.ElementAt(i).transform.localPosition = Vector3.up * i;
-        }     
+        }
+    }
+
+    private Dictionary<IInteractableItem, char> interactableItems = new();
+
+    public void registerInteractableItem(IInteractableItem item)
+    {
+        if(!interactableItems.Values.Contains(item.GetHotkey())) {
+            interactableItems.Add(item, item.GetHotkey());
+        } else {
+            interactableItems.Add(item, item.GetUniqueHotkey(interactableItems.Values));
+        }
+        
+        //Debug.Log($"register {interactableItems[item]}");
+        //Debug.Log($"registered entries {interactableItems.Keys.Count}");
+    }
+
+    public void deregisterInteractableItem(IInteractableItem item)
+    {
+        //Debug.Log($"remove {interactableItems[item]}");
+        interactableItems.Remove(item);
+        //Debug.Log($"registered entries {interactableItems.Keys.Count}");
     }
 }
