@@ -250,7 +250,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: -0.57, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 2}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 327.783, y: 72}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!223 &3288535821056988434
@@ -326,10 +326,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31d74fcb4fb80bb43ad75ea79413f2ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  background: {fileID: 3288535821282934638}
   keycapIcon: {fileID: 3288535820075285332}
   itemDescription: {fileID: 3288535819739288922}
   iconText: {fileID: 3288535821141854727}
+  verticalPositionOffset: 2
   padding: 32
   description: Item Description
   hotkey: 68

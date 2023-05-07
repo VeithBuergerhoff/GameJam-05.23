@@ -15,6 +15,10 @@ public class LabelController : MonoBehaviour
     private TextMeshProUGUI iconText;
 
     [SerializeField]
+    [Range(0, 10)]
+    public float verticalPositionOffset = 2f;
+
+    [SerializeField]
     private int padding = 32;
 
     [SerializeField]
@@ -33,8 +37,12 @@ public class LabelController : MonoBehaviour
     private void Start()
     {
         SetText(description, hotkey);
+    }
+
+    void Update()
+    {
         transform.SetPositionAndRotation(
-            transform.position,
+            transform.parent.position + Vector3.up * verticalPositionOffset,
             CameraController.Instance.getMainCamera().transform.rotation
         );
     }
