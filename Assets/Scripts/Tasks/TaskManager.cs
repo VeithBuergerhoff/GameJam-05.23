@@ -58,7 +58,7 @@ public class TaskManager : MonoBehaviour
 
         CreateTasks();
 
-        var availableTaskHolders = _taskHolder.Where(x => !x.HasTask).Take(_batchSize);
+        var availableTaskHolders = _taskHolder.Where(x => !x.HasTask).ToList().Shuffle().Take(_batchSize);
 
         Debug.Log($"Queuing {availableTaskHolders.Count()} tasks");
 
@@ -100,7 +100,6 @@ public class TaskManager : MonoBehaviour
             }
         }
 
-        enumerableTasks.Shuffle();
-        return enumerableTasks;
+        return enumerableTasks.Shuffle();
     }
 }
