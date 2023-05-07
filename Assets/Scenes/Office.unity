@@ -3929,6 +3929,10 @@ PrefabInstance:
       propertyPath: itemName
       value: Keyboard
       objectReference: {fileID: 0}
+    - target: {fileID: 5715066475347166787, guid: 318408746d72e7e4895ecc86fc4c7bdb, type: 3}
+      propertyPath: _itemName
+      value: Bildschirm
+      objectReference: {fileID: 0}
     - target: {fileID: 5715066475347166788, guid: 318408746d72e7e4895ecc86fc4c7bdb, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -15639,6 +15643,10 @@ PrefabInstance:
       propertyPath: itemName
       value: Igel
       objectReference: {fileID: 0}
+    - target: {fileID: 5715066475347166787, guid: 318408746d72e7e4895ecc86fc4c7bdb, type: 3}
+      propertyPath: _itemName
+      value: Keyboard
+      objectReference: {fileID: 0}
     - target: {fileID: 5715066475347166788, guid: 318408746d72e7e4895ecc86fc4c7bdb, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -26826,6 +26834,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1717424872}
     m_Modifications:
+    - target: {fileID: 2010159089522307739, guid: 318408746d72e7e4895ecc86fc4c7bdb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5715066475347166787, guid: 318408746d72e7e4895ecc86fc4c7bdb, type: 3}
       propertyPath: _itemName
       value: Igel
@@ -30195,36 +30207,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 935716829973126145, guid: 7de4b95a68dd8474ab30918b1f40feda, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1.14
+      propertyPath: m_LocalScale.x
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 935716829973126145, guid: 7de4b95a68dd8474ab30918b1f40feda, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 935716829973126145, guid: 7de4b95a68dd8474ab30918b1f40feda, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 935716829973126145, guid: 7de4b95a68dd8474ab30918b1f40feda, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 935716829973126145, guid: 7de4b95a68dd8474ab30918b1f40feda, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 935716829973126145, guid: 7de4b95a68dd8474ab30918b1f40feda, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -2.56
-      objectReference: {fileID: 0}
-    - target: {fileID: 935716829973126145, guid: 7de4b95a68dd8474ab30918b1f40feda, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0.54
-      objectReference: {fileID: 0}
-    - target: {fileID: 935716829973126145, guid: 7de4b95a68dd8474ab30918b1f40feda, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      propertyPath: m_LocalScale.y
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 4919544851432958534, guid: 7de4b95a68dd8474ab30918b1f40feda, type: 3}
       propertyPath: m_Name
