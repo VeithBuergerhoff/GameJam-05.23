@@ -5,17 +5,20 @@ using System.Threading.Tasks;
 
 public static class HotkeyHelper
 {
+    public static char[] hotkeyBlacklist = {'W', 'A', 'S', 'D'};
+    
     public static char findUniqueHotkey(string itemName, IEnumerable<char> usedHotkeys)
     {
         char hotkey;
-        var uniqueCharsInName = itemName.ToUpper().Except(usedHotkeys);
+        IEnumerable<char> unavailableHotkeys = hotkeyBlacklist.Concat(usedHotkeys);
+        var uniqueCharsInName = itemName.ToUpper().Except(unavailableHotkeys);
         if (uniqueCharsInName.Any())
         {
             hotkey = uniqueCharsInName.First();
         }
         else
         {
-            var uniqueCharsInAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".Except(usedHotkeys);
+            var uniqueCharsInAlphabet = "BCEFGHIJKLMNOPQRTUVXYZ".Except(unavailableHotkeys);
             if (uniqueCharsInAlphabet.Any())
             {
                 hotkey = uniqueCharsInAlphabet.ElementAt(
