@@ -30457,11 +30457,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7573080462144105267, guid: 54b22aa81aa3f5e49a9e4091a5f31b46, type: 3}
       propertyPath: _taskPool.Array.data[0].Patience
-      value: 40
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 7573080462144105267, guid: 54b22aa81aa3f5e49a9e4091a5f31b46, type: 3}
       propertyPath: _taskPool.Array.data[2].Patience
-      value: 70
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 7573080462144105267, guid: 54b22aa81aa3f5e49a9e4091a5f31b46, type: 3}
       propertyPath: _taskPool.Array.data[3].Patience
