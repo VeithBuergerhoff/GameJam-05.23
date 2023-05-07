@@ -10,28 +10,26 @@ public class StockpileController : MonoBehaviour
     private GameObject itemPrefab;
 
     [SerializeField]
-    private GameObject labelPrefab;
-    private GameObject labelInstance;
+    private int _itemSpawnCount = 5;
 
     [SerializeField]
-    private string itemName;
+    private LabelController _label;
 
     [SerializeField]
-    private GameObject PlayerSensor;
+    private string _itemName;
+
     [SerializeField]
-    private Transform spwanpoint;
-    
-    private SensorController sensorController;
+    private SensorController _playerSensor;
+
+    [SerializeField]
+    private Transform _spawnpoint;
+
     private GameObject player;
-    
+
 
     void Awake()
     {
-        sensorController = PlayerSensor.GetComponent<SensorController>();        
-
-        labelInstance = Instantiate(labelPrefab, transform);
-        labelInstance.SetActive(false);
-        labelInstance.GetComponent<LabelController>().SetText($"{itemName} nehmen", ' ');
+        _label.SetText($"{_itemName} nehmen", ' ');
     }
 
     void Update()
@@ -40,36 +38,21 @@ public class StockpileController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                ItemLifecycleManager.Instance.SpawnItem(
-                    spwanpoint.position,                
-                    new ItemController.Item() { Name = itemName, PreferredHotkey = itemName[0] }
-                );
-                ItemLifecycleManager.Instance.SpawnItem(
-                    spwanpoint.position,                
-                    new ItemController.Item() { Name = itemName, PreferredHotkey = itemName[0] }
-                );
-                ItemLifecycleManager.Instance.SpawnItem(
-                    spwanpoint.position,                
-                    new ItemController.Item() { Name = itemName, PreferredHotkey = itemName[0] }
-                );
-                ItemLifecycleManager.Instance.SpawnItem(
-                    spwanpoint.position,                
-                    new ItemController.Item() { Name = itemName, PreferredHotkey = itemName[0] }
-                );
-                ItemLifecycleManager.Instance.SpawnItem(
-                    spwanpoint.position,                
-                    new ItemController.Item() { Name = itemName, PreferredHotkey = itemName[0] }
-                );
+                for (int i = 0; i < _itemSpawnCount; i++)
+                {
+                    ItemLifecycleManager.Instance.SpawnItem(_spawnpoint.position,
+                                                            new ItemController.Item() { Name = _itemName, PreferredHotkey = _itemName[0] });
+                }
             }
         }
     }
 
     public void ShowLabel(bool show)
     {
-        labelInstance.SetActive(show);
+        _label.gameObject.SetActive(show);
     }
 
-    void PlayerEnteredArea(Collider playerCollider)
+    void PlayerEnteredArea(object sender, Collider playerCollider)
     {
         if (player is null)
         {
@@ -78,7 +61,7 @@ public class StockpileController : MonoBehaviour
         }
     }
 
-    void PlayerExitedArea(Collider playerCollider)
+    void PlayerExitedArea(object sender, Collider playerCollider)
     {
         if (player is not null && player == playerCollider.gameObject)
         {
@@ -89,13 +72,13 @@ public class StockpileController : MonoBehaviour
 
     void OnEnable()
     {
-        sensorController.OnTagEnter += PlayerEnteredArea;
-        sensorController.OnTagExit += PlayerExitedArea;
+        _playerSensor.TagEntered += PlayerEnteredArea;
+        _playerSensor.TagExited += PlayerExitedArea;
     }
 
     void OnDisable()
     {
-        sensorController.OnTagEnter -= PlayerEnteredArea;
-        sensorController.OnTagExit -= PlayerExitedArea;
+        _playerSensor.TagEntered -= PlayerEnteredArea;
+        _playerSensor.TagExited -= PlayerExitedArea;
     }
 }

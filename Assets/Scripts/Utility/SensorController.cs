@@ -1,17 +1,14 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SensorController : MonoBehaviour
 {
     [SerializeField]
-    private String _watchedTag = "Player";
+    private string _watchedTag = "Player";
     
-    public Action<bool> OnTagDetected;
-
-    public Action<Collider> OnTagEnter;
-    public Action<Collider> OnTagExit;
+    public event EventHandler<Collider> TagEntered;
+    public event EventHandler<Collider> TagExited;
 
     private bool _isTagDetected = false;
 
@@ -20,7 +17,7 @@ public class SensorController : MonoBehaviour
         if (other.CompareTag(_watchedTag) && !_isTagDetected)
         {
             _isTagDetected = true;
-            OnTagEnter?.Invoke(other);
+            TagEntered?.Invoke(this, other);
         }
     }
 
@@ -29,7 +26,7 @@ public class SensorController : MonoBehaviour
         if (other.CompareTag(_watchedTag) && _isTagDetected)
         {
             _isTagDetected = false;
-            OnTagExit?.Invoke(other);
+            TagExited?.Invoke(this, other);
         }
     }
 }
