@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,7 +12,13 @@ public class GameManager : MonoBehaviour
     private int _gameSceneIndex = 1;
 
     [SerializeField]
-    private int _gameOverSceneIndex = 2;
+    private int _gameLostSceneIndex = 2;
+
+    [SerializeField]
+    private int _gameWonSceneIndex = 3;
+
+    private object _sceneLoaderLock = new();
+    private bool _isLoadingScene = false;
 
     public static GameManager Instance { get; set; }
 
@@ -29,18 +34,44 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void LoadMenu()
+    public IEnumerator LoadMenu()
     {
-        SceneManager.LoadSceneAsync(_mainMenuSceneIndex);
+        return LoadScene(_mainMenuSceneIndex);
     }
 
-    public void StartGame()
+    public IEnumerator StartGame()
     {
-        SceneManager.LoadSceneAsync(_gameSceneIndex);
+        return LoadScene(_gameSceneIndex);
     }
 
-    public void InitiateGameOver()
+    public IEnumerator InitiateGameOver()
     {
-        SceneManager.LoadSceneAsync(_gameOverSceneIndex);
+        return LoadScene(_gameLostSceneIndex);
+    }
+
+    public IEnumerator WinGame()
+    {
+        yield return new WaitForSeconds(3);
+
+        StartCoroutine(LoadScene(_gameWonSceneIndex));
+    }
+
+    private IEnumerator LoadScene(int index)
+    {
+        if (_isLoadingScene)
+        {
+            yield break;
+        }
+
+        lock (_sceneLoaderLock)
+        {
+            _isLoadingScene = true;
+            var asyncLoad = SceneManager.LoadSceneAsync(index);
+            asyncLoad.completed += _ => _isLoadingScene = false;
+            while (!asyncLoad.isDone)
+            {
+                yield return null;
+            }
+        }
     }
 }

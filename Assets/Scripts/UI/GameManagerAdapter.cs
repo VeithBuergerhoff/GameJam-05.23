@@ -6,11 +6,11 @@ public class GameManagerAdapter : MonoBehaviour
 {
     public void StartGame()
     {
-        GameManager.Instance.StartGame();
+        StartCoroutine(GameManager.Instance.StartGame());
     }
 
     public void LoadMainMenu()
     {
-        GameManager.Instance.LoadMenu();
+        StartCoroutine(GameManager.Instance.LoadMenu());
     }
 }

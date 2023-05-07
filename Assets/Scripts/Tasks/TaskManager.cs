@@ -48,7 +48,7 @@ public class TaskManager : MonoBehaviour
 
         if (_taskHolder.Any(x => x.HasTask && !x.HasPatienceLeft))
         {
-            GameManager.Instance.InitiateGameOver();
+            StartCoroutine(GameManager.Instance.InitiateGameOver());
         }
     }
 
