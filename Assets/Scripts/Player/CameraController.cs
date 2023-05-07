@@ -13,22 +13,22 @@ public class CameraController : MonoBehaviour
     private Vector3 _offset = new(0, 10, 10);
 
     [SerializeField]
-    private bool _useLerping = true;
+    private bool _useDynamicLerping = true;
     
     [SerializeField]
     [Range(min: 0, 1)]
     private float _freeWindow = 0.3f;
 
     [SerializeField]
-    [Range(0, 10)]
-    private float _lerpValue = 1f;
+    [Range(0, 1)]
+    private float _lerpValue = 0.5f;
 
     [SerializeField]
     [Range(0, 10)]
     private float _maxDistance = 3;
 
     [SerializeField]
-    [Range(0, 100)]
+    [Range(0, 10)]
     private float _lerpBoost = 10;
 
     public static CameraController Instance { get; private set; }
@@ -56,7 +56,7 @@ public class CameraController : MonoBehaviour
         }
 
         var desiredPosition = _player.position + _offset;
-        if (!_useLerping)
+        if (!_useDynamicLerping)
         {
             transform.position = Vector3.Lerp(transform.position, desiredPosition, 1);
         }
@@ -64,13 +64,13 @@ public class CameraController : MonoBehaviour
         var distance = Vector3.Distance(transform.position, desiredPosition);
         if (distance > _freeWindow)
         {
-            var delta = distance * _lerpValue * Time.deltaTime;
+            var delta = distance * _lerpValue;
             if (distance > _maxDistance)
             {
                 delta *= _lerpBoost;
             }
 
-            transform.position = Vector3.MoveTowards(transform.position, desiredPosition, delta);
+            transform.position = Vector3.Lerp(transform.position, desiredPosition, delta);
         }
     }
 }

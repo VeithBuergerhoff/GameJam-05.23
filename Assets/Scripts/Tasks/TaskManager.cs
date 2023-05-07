@@ -45,6 +45,11 @@ public class TaskManager : MonoBehaviour
         {
             _countdown -= Time.deltaTime;
         }
+
+        if (_taskHolder.Any(x => x.HasTask && !x.HasPatienceLeft))
+        {
+            GameManager.Instance.InitiateGameOver();
+        }
     }
 
     private void QueueTasks()
