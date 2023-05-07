@@ -159,9 +159,9 @@ public class ItemCarrier : MonoBehaviour
 
     public void registerInteractableItem(IInteractableItem item)
     {
-        if (!_interactableItems.Keys.Contains(item.GetCurrentHotkey()))
+        if (!_interactableItems.Keys.Contains(item.GetPreferredHotkey()))
         {
-            _interactableItems.Add(item.GetCurrentHotkey(), item);
+            _interactableItems.Add(item.GetPreferredHotkey(), item);
         }
         else
         {
@@ -171,6 +171,6 @@ public class ItemCarrier : MonoBehaviour
 
     public void deregisterInteractableItem(IInteractableItem item)
     {
-        _interactableItems.Remove(item.GetCurrentHotkey());
+        _interactableItems.Remove(item.GetPreferredHotkey());
     }
 }

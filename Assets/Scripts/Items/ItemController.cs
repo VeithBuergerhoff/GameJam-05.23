@@ -9,6 +9,7 @@ public class ItemController : MonoBehaviour, IInteractableItem
     public struct Item
     {
         public string Name;
+        public char PreferredHotkey;
     }
 
     [SerializeField]
@@ -26,14 +27,13 @@ public class ItemController : MonoBehaviour, IInteractableItem
     void Awake()
     {
         sensorController = PlayerSensor.GetComponent<SensorController>();
-        sensorController.OnTagEnter += PlayerEnteredArea;
-        sensorController.OnTagExit += PlayerExitedArea;
 
         itemLabelInstance = Instantiate(itemLabelPrefab, transform);
         itemLabelInstance.SetActive(false);
+
         itemLabelController = itemLabelInstance.GetComponent<LabelController>();
         itemLabelController.verticalPositionOffset = 1f;
-        itemLabelController.SetText(item.Name, item.Name[0]);
+        itemLabelController.SetText(item.Name, item.PreferredHotkey);
     }
 
     void PlayerEnteredArea(Collider playerCollider)
@@ -48,20 +48,26 @@ public class ItemController : MonoBehaviour, IInteractableItem
         ShowLabel(false);
     }
 
+    public void SetText(Item itemInfo){
+        item = itemInfo;
+        itemLabelController.SetText(itemInfo.Name, itemInfo.PreferredHotkey);
+    }
+
     #region IInteractableItem
     public string GetItemName()
     {
         return item.Name;
     }
 
-    public char GetCurrentHotkey()
+    public char GetPreferredHotkey()
     {
-        return itemLabelController.GetHotkey();
+        return item.PreferredHotkey;
     }
 
     public char GetUniqueHotkey(IEnumerable<char> usedHotkeys)
     {
         char hotkey = HotkeyHelper.findUniqueHotkey(item.Name, usedHotkeys);
+        item.PreferredHotkey = hotkey;
         itemLabelController.SetHotkey(hotkey);
         return hotkey;
     }
@@ -72,11 +78,16 @@ public class ItemController : MonoBehaviour, IInteractableItem
     #endregion IInteractableItem
     public void ShowLabel(bool show)
     {
-        Debug.Log($"showLabel {show}");
         itemLabelInstance.SetActive(show);
     }
 
-    ~ItemController()
+    void OnEnable()
+    {
+        sensorController.OnTagEnter += PlayerEnteredArea;
+        sensorController.OnTagExit += PlayerExitedArea;
+    }
+
+    void OnDisable()
     {
         sensorController.OnTagEnter -= PlayerEnteredArea;
         sensorController.OnTagExit -= PlayerExitedArea;
