@@ -53,9 +53,11 @@ public class TaskHolderController : MonoBehaviour
     {
         if (_overlayEntry is not null)
         {
-            _overlayEntry._textField.text = _currentTask?.Name ?? string.Empty;
-            var patiencePercentage = PatienceLeft / _currentTask?.Patience;
-            _overlayEntry._timeSlider.value = patiencePercentage ?? 0;
+            _overlayEntry.textField.text = _currentTask?.Name ?? string.Empty;
+            var patiencePercentage = (PatienceLeft / _currentTask?.Patience) ?? 0;
+            _overlayEntry.timeSlider.value = patiencePercentage;
+
+            _overlayEntry.sliderFill.color = _overlayEntry.timeGradient.Evaluate(patiencePercentage);
         }
 
         if (PatienceLeft > 0)
@@ -87,6 +89,7 @@ public class TaskHolderController : MonoBehaviour
     {
         _currentTask = null;
         Destroy(_overlayEntry.gameObject);
+        _overlayEntry = null;
     }
 
     public void SetOverlayItem(TaskOverlayEntry taskOverlayEntry)
