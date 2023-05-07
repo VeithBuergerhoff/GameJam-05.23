@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class SpeechbubbleController : MonoBehaviour
 {
@@ -19,18 +19,22 @@ public class SpeechbubbleController : MonoBehaviour
     [SerializeField]
     private int preferredWidth = 256;
 
-    private RectTransform rectTransform;
+    private RectTransform _rectTransform;
+    
+    private CameraController _cameraController;
 
     void Awake()
     {
-        rectTransform = GetComponent<RectTransform>();
+        _rectTransform = GetComponent<RectTransform>();
+        _cameraController = FindObjectOfType<CameraController>();
     }
 
     void Update()
     {
+
         transform.SetPositionAndRotation(
             transform.parent.position + Vector3.up * verticalPositionOffset,
-            CameraController.Instance.getMainCamera().transform.rotation
+            _cameraController.mainCamera.transform.rotation
         );
     }
 
@@ -41,17 +45,17 @@ public class SpeechbubbleController : MonoBehaviour
         var itemDescriptionBounds = descriptionField.GetRenderedValues();
         if (description == ":)" || description == ">:(")
         {
-            rectTransform.SetSizeWithCurrentAnchors(
+            _rectTransform.SetSizeWithCurrentAnchors(
                 RectTransform.Axis.Horizontal,
                 itemDescriptionBounds.x + padding
             );
         } else {
-            rectTransform.SetSizeWithCurrentAnchors(
+            _rectTransform.SetSizeWithCurrentAnchors(
                 RectTransform.Axis.Horizontal,
                 preferredWidth
             );
         }
-        rectTransform.SetSizeWithCurrentAnchors(
+        _rectTransform.SetSizeWithCurrentAnchors(
             RectTransform.Axis.Vertical,
             itemDescriptionBounds.y + padding
         );

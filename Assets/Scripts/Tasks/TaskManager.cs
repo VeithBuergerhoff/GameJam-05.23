@@ -34,11 +34,6 @@ public class TaskManager : MonoBehaviour
 
     void Awake()
     {
-        if (Instance is not null && Instance != this)
-        {
-            throw new Exception($"{nameof(TaskManager)} is a singleton! There can only ever be one instance");
-        }
-
         Instance = this;
     }
 
