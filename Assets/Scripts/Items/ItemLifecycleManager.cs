@@ -10,6 +10,9 @@ public class ItemLifecycleManager : MonoBehaviour
     [SerializeField]
     private GameObject _itemPrefab;
 
+    private GameObject _editableInstantiator;
+    private ItemController _editableItemController;
+
     private List<ItemController> _itemPool = new();
 
     void Awake()
@@ -20,30 +23,41 @@ public class ItemLifecycleManager : MonoBehaviour
         }
 
         Instance = this;
+
+        _editableInstantiator = Instantiate(_itemPrefab);
+        _editableItemController = _editableInstantiator.GetComponent<ItemController>();
+        _editableInstantiator.SetActive(false);
     }
 
-    public ItemController SpawnItem()
+    public ItemController SpawnItem(ItemController.Item initialValues)
     {
-        return SpawnItem(Vector3.zero, Quaternion.identity);
+        return SpawnItem(Vector3.zero, Quaternion.identity, initialValues);
     }
 
-    public ItemController SpawnItem(Vector3 position)
+    public ItemController SpawnItem(Vector3 position, ItemController.Item initialValues)
     {
-        return SpawnItem(position, Quaternion.identity);
+        return SpawnItem(position, Quaternion.identity, initialValues);
     }
 
-    public ItemController SpawnItem(Vector3 position, Quaternion rotation)
+    public ItemController SpawnItem(Vector3 position, Quaternion rotation, ItemController.Item initialValues)
     {
-        if (_itemPool.Any())
+        if (_itemPool.Any(item => !item.isActiveAndEnabled))
         {
-            var item = _itemPool.Single();
+            var item = _itemPool.First();
             item.transform.SetParent(null);
             item.gameObject.transform.SetPositionAndRotation(position, rotation);
+            item.gameObject.name = $"Item: {initialValues.Name}";
+            item.SetText( initialValues );
             item.gameObject.SetActive(true);
             return item;
         }
 
-        return Instantiate(_itemPrefab, position, rotation).GetComponent<ItemController>();
+        _editableItemController.item.Name = initialValues.Name;
+        _editableItemController.item.PreferredHotkey = initialValues.PreferredHotkey;
+        var spawned = Instantiate(_editableInstantiator, position, rotation);
+        spawned.name = $"Item: {initialValues.Name}";
+        spawned.SetActive(true);
+        return spawned.GetComponent<ItemController>();
     }
 
     public void RemoveItem(ItemController item)

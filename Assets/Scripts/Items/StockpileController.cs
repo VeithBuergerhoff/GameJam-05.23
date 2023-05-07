@@ -4,21 +4,26 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class StockpileController : MonoBehaviour, IInteractableItem
+public class StockpileController : MonoBehaviour
 {
     [SerializeField]
     private GameObject itemPrefab;
 
     [SerializeField]
-    private GameObject itemLabelPrefab;
-    private GameObject itemLabelInstance;
+    private GameObject labelPrefab;
+    private GameObject labelInstance;
 
     [SerializeField]
     private string itemName;
 
     [SerializeField]
     private GameObject PlayerSensor;
+    [SerializeField]
+    private Transform spwanpoint;
+    
     private SensorController sensorController;
+    private GameObject player;
+    
 
     void Awake()
     {
@@ -26,49 +31,62 @@ public class StockpileController : MonoBehaviour, IInteractableItem
         sensorController.OnTagEnter += PlayerEnteredArea;
         sensorController.OnTagExit += PlayerExitedArea;
 
-        itemLabelInstance = Instantiate(itemLabelPrefab, transform);
-        itemLabelInstance.SetActive(false);
-        itemLabelInstance.GetComponent<LabelController>().SetText(itemName, itemName[0]);
+        labelInstance = Instantiate(labelPrefab, transform);
+        labelInstance.SetActive(false);
+        labelInstance.GetComponent<LabelController>().SetText($"{itemName} nehmen", ' ');
     }
 
-    #region IInteractableItem
-    public string GetItemName()
+    void Update()
     {
-        return itemName;
+        if (player is not null)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                ItemLifecycleManager.Instance.SpawnItem(
+                    spwanpoint.position,                
+                    new ItemController.Item() { Name = itemName, PreferredHotkey = itemName[0] }
+                );
+                ItemLifecycleManager.Instance.SpawnItem(
+                    spwanpoint.position,                
+                    new ItemController.Item() { Name = itemName, PreferredHotkey = itemName[0] }
+                );
+                ItemLifecycleManager.Instance.SpawnItem(
+                    spwanpoint.position,                
+                    new ItemController.Item() { Name = itemName, PreferredHotkey = itemName[0] }
+                );
+                ItemLifecycleManager.Instance.SpawnItem(
+                    spwanpoint.position,                
+                    new ItemController.Item() { Name = itemName, PreferredHotkey = itemName[0] }
+                );
+                ItemLifecycleManager.Instance.SpawnItem(
+                    spwanpoint.position,                
+                    new ItemController.Item() { Name = itemName, PreferredHotkey = itemName[0] }
+                );
+            }
+        }
     }
-
-    public char GetCurrentHotkey()
-    {
-        return itemLabelInstance.GetComponent<LabelController>().GetHotkey();
-    }
-
-    public char GetUniqueHotkey(IEnumerable<char> usedHotkeys)
-    {
-        char hotkey = HotkeyHelper.findUniqueHotkey(itemName, usedHotkeys);
-        itemLabelInstance.GetComponent<LabelController>().SetHotkey(hotkey);
-        return hotkey;
-    }
-
-    public ItemController GetItemController() {
-        throw new NotImplementedException("todo: spwan item");
-    }
-    #endregion IInteractableItem
 
     public void ShowLabel(bool show)
     {
-        itemLabelInstance.SetActive(show);
+        labelInstance.SetActive(show);
     }
 
     void PlayerEnteredArea(Collider playerCollider)
     {
-        playerCollider.gameObject.GetComponent<ItemCarrier>().registerInteractableItem(this);
-        ShowLabel(true);
+        if (player is null)
+        {
+            player = playerCollider.gameObject;
+            ShowLabel(true);
+        }
     }
 
     void PlayerExitedArea(Collider playerCollider)
     {
-        playerCollider.gameObject.GetComponent<ItemCarrier>().deregisterInteractableItem(this);
-        ShowLabel(false);
+        if (player is not null && player == playerCollider.gameObject)
+        {
+            player = null;
+            ShowLabel(false);
+        }
     }
 
     ~StockpileController()
