@@ -19,11 +19,11 @@ public class TaskHolderController : MonoBehaviour
 
     private string StatusMessage => $"{_currentTask.Name}:{_patienceLeft:0}";
 
-    private TextMeshProUGUI _textField;
+    private SpeechbubbleController _speechbubbleController;
 
     void Awake()
     {
-        _textField = GetComponentInChildren<TextMeshProUGUI>();
+        _speechbubbleController = GetComponentInChildren<SpeechbubbleController>();
     }
 
     void OnEnable()
@@ -54,15 +54,15 @@ public class TaskHolderController : MonoBehaviour
 
         if (!HasTask)
         {
-            _textField.text = ":)";
+            _speechbubbleController.SetText(":)");
         }
         else if (HasPatienceLeft)
         {
-            _textField.text = StatusMessage;
+            _speechbubbleController.SetText(StatusMessage);
         }
         else
         {
-            _textField.text = ">:(";
+            _speechbubbleController.SetText(">:(");
         }
     }
 
