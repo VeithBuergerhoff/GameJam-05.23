@@ -63,21 +63,13 @@ public class TaskHolderController : MonoBehaviour
             _overlayEntry.timeSlider.value = patiencePercentage;
         }        
 
-        if (!HasTask)
-        {
-            _speechbubbleController.SetText(":)", patiencePercentage);
-        }
-        else if (HasPatienceLeft)
+        if (HasTask && HasPatienceLeft)
         {
             _speechbubbleController.HasTask = true;
             _speechbubbleController.SetText(
                 _currentTask?.Name ?? string.Empty,
                 patiencePercentage
             );
-        }
-        else
-        {
-            _speechbubbleController.SetText(">:(", patiencePercentage);
         }
     }
 

@@ -11,9 +11,12 @@ public class SpeechbubbleController : MonoBehaviour
     public bool HasTask
     {
         get { return _hasTask; }
-        set { 
-            if(_hasTask != value){
-                if(player is null){
+        set
+        {
+            if (_hasTask != value)
+            {
+                if (player is null)
+                {
                     ShowIndicator(true);
                 }
             }
@@ -33,9 +36,6 @@ public class SpeechbubbleController : MonoBehaviour
 
     [SerializeField]
     public int padding = 24;
-
-    [SerializeField]
-    private int preferredWidth = 256;
 
     private RectTransform _rectTransform;
     private CameraController _cameraController;
@@ -59,7 +59,6 @@ public class SpeechbubbleController : MonoBehaviour
 
     void Update()
     {
-
         transform.SetPositionAndRotation(
             transform.parent.position + Vector3.up * verticalPositionOffset,
             _cameraController.mainCamera.transform.rotation
@@ -72,18 +71,6 @@ public class SpeechbubbleController : MonoBehaviour
         indicatorSlider.value = patiencePercentage;
         descriptionField.ForceMeshUpdate();
         var itemDescriptionBounds = descriptionField.GetRenderedValues();
-        if (description == ":)" || description == ">:(")
-        {
-            _rectTransform.SetSizeWithCurrentAnchors(
-                RectTransform.Axis.Horizontal,
-                itemDescriptionBounds.x + padding
-            );
-        } else {
-            _rectTransform.SetSizeWithCurrentAnchors(
-                RectTransform.Axis.Horizontal,
-                preferredWidth
-            );
-        }
         _rectTransform.SetSizeWithCurrentAnchors(
             RectTransform.Axis.Vertical,
             itemDescriptionBounds.y + padding
@@ -105,7 +92,10 @@ public class SpeechbubbleController : MonoBehaviour
         if (player is null)
         {
             player = playerCollider.gameObject;
-            ShowLabel(true);
+            if (_hasTask)
+            {
+                ShowLabel(true);
+            }
             ShowIndicator(false);
         }
     }
@@ -116,7 +106,10 @@ public class SpeechbubbleController : MonoBehaviour
         {
             player = null;
             ShowLabel(false);
-            ShowIndicator(true);
+            if (_hasTask)
+            {
+                ShowIndicator(true);
+            }
         }
     }
 

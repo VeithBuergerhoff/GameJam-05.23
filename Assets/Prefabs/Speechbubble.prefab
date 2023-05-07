@@ -435,7 +435,6 @@ MonoBehaviour:
   indicatorSlider: {fileID: 1093686105210418723}
   verticalPositionOffset: 2
   padding: 24
-  preferredWidth: 256
   playerSensor: {fileID: 1590204090997774865}
 --- !u!1 &6570394778529712656
 GameObject:
