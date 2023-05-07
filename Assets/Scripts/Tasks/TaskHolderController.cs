@@ -21,8 +21,6 @@ public class TaskHolderController : MonoBehaviour
 
     public float? MaxPatience => _currentTask?.Patience;
 
-    private string StatusMessage => $"{_currentTask.Name}:{PatienceLeft:0}";
-
     private SpeechbubbleController _speechbubbleController;
 
     void Awake()
@@ -61,7 +59,9 @@ public class TaskHolderController : MonoBehaviour
         {
             _overlayEntry.textField.text = _currentTask?.Name ?? string.Empty;
             _overlayEntry.timeSlider.value = patiencePercentage;
-        }
+
+            _overlayEntry.sliderFill.color = _overlayEntry.timeGradient.Evaluate(patiencePercentage);
+        }        
 
         if (HasTask && HasPatienceLeft)
         {
