@@ -30320,20 +30320,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1902151561}
     - target: {fileID: 2171964798321956324, guid: 54b22aa81aa3f5e49a9e4091a5f31b46, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2171964798321956324, guid: 54b22aa81aa3f5e49a9e4091a5f31b46, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2171964798321956324, guid: 54b22aa81aa3f5e49a9e4091a5f31b46, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 513.7219
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2171964798321956324, guid: 54b22aa81aa3f5e49a9e4091a5f31b46, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 663.9954
+      value: 0.0001
       objectReference: {fileID: 0}
     - target: {fileID: 2171964798321956324, guid: 54b22aa81aa3f5e49a9e4091a5f31b46, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 256.86096
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2171964798321956324, guid: 54b22aa81aa3f5e49a9e4091a5f31b46, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -331.99756
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7573080462144105264, guid: 54b22aa81aa3f5e49a9e4091a5f31b46, type: 3}
       propertyPath: m_Name
@@ -30388,6 +30396,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7573080462144105267, guid: 54b22aa81aa3f5e49a9e4091a5f31b46, type: 3}
+      propertyPath: _taskPool.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573080462144105267, guid: 54b22aa81aa3f5e49a9e4091a5f31b46, type: 3}
       propertyPath: _taskHolder.Array.data[0]
       value: 
       objectReference: {fileID: 1104199024}
@@ -30439,9 +30451,49 @@ PrefabInstance:
       propertyPath: _taskHolder.Array.data[12]
       value: 
       objectReference: {fileID: 868776420}
+    - target: {fileID: 7573080462144105267, guid: 54b22aa81aa3f5e49a9e4091a5f31b46, type: 3}
+      propertyPath: _taskPool.Array.data[3].Name
+      value: HILFE! Ich hab auf den E-Mail Anhang geklickt
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573080462144105267, guid: 54b22aa81aa3f5e49a9e4091a5f31b46, type: 3}
+      propertyPath: _taskPool.Array.data[0].Patience
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573080462144105267, guid: 54b22aa81aa3f5e49a9e4091a5f31b46, type: 3}
+      propertyPath: _taskPool.Array.data[2].Patience
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573080462144105267, guid: 54b22aa81aa3f5e49a9e4091a5f31b46, type: 3}
+      propertyPath: _taskPool.Array.data[3].Patience
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573080462144105267, guid: 54b22aa81aa3f5e49a9e4091a5f31b46, type: 3}
+      propertyPath: _taskPool.Array.data[0].Frequency
+      value: 0.494
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573080462144105267, guid: 54b22aa81aa3f5e49a9e4091a5f31b46, type: 3}
+      propertyPath: _taskPool.Array.data[1].Frequency
+      value: 0.341
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573080462144105267, guid: 54b22aa81aa3f5e49a9e4091a5f31b46, type: 3}
+      propertyPath: _taskPool.Array.data[2].Frequency
+      value: 0.117
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573080462144105267, guid: 54b22aa81aa3f5e49a9e4091a5f31b46, type: 3}
+      propertyPath: _taskPool.Array.data[3].Frequency
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573080462144105267, guid: 54b22aa81aa3f5e49a9e4091a5f31b46, type: 3}
+      propertyPath: _taskPool.Array.data[3].WantedItemName
+      value: PULL THE PLUG
+      objectReference: {fileID: 0}
     - target: {fileID: 8153531699368959764, guid: 54b22aa81aa3f5e49a9e4091a5f31b46, type: 3}
       propertyPath: m_Color.a
       value: 0.08627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153531699368959764, guid: 54b22aa81aa3f5e49a9e4091a5f31b46, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54b22aa81aa3f5e49a9e4091a5f31b46, type: 3}

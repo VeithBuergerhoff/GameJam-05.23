@@ -10,9 +10,6 @@ public class ItemLifecycleManager : MonoBehaviour
     [SerializeField]
     private GameObject _itemPrefab;
 
-    private GameObject _editableInstantiator;
-    private ItemController _editableItemController;
-
     private List<ItemController> _itemPool = new();
 
     void Awake()
@@ -24,10 +21,6 @@ public class ItemLifecycleManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
         Instance = this;
-
-        _editableInstantiator = Instantiate(_itemPrefab);
-        _editableItemController = _editableInstantiator.GetComponent<ItemController>();
-        _editableInstantiator.SetActive(false);
     }
 
     public ItemController SpawnItem(ItemController.Item initialValues)
@@ -53,12 +46,15 @@ public class ItemLifecycleManager : MonoBehaviour
             return item;
         }
 
-        _editableItemController.item.Name = initialValues.Name;
-        _editableItemController.item.PreferredHotkey = initialValues.PreferredHotkey;
-        var spawned = Instantiate(_editableInstantiator, position, rotation);
+        var spawned = Instantiate(_itemPrefab, position, rotation);
+
         spawned.name = $"Item: {initialValues.Name}";
         spawned.SetActive(true);
-        return spawned.GetComponent<ItemController>();
+
+        var controller = spawned.GetComponent<ItemController>();
+        controller.item.Name = initialValues.Name;
+        controller.item.PreferredHotkey = initialValues.PreferredHotkey;
+        return controller;
     }
 
     public void RemoveItem(ItemController item)
