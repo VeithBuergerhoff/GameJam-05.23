@@ -13,6 +13,9 @@ public class CameraController : MonoBehaviour
     private Vector3 _offset = new(0, 10, 10);
 
     [SerializeField]
+    private bool _useLerping = true;
+    
+    [SerializeField]
     [Range(min: 0, 1)]
     private float _freeWindow = 0.3f;
 
@@ -27,9 +30,6 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     [Range(0, 100)]
     private float _lerpBoost = 10;
-
-    [SerializeField]
-    private bool _useLerping = true;
 
     public static CameraController Instance { get; private set; }
 

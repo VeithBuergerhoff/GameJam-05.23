@@ -1,6 +1,6 @@
-using System.Linq;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ItemController : MonoBehaviour, IInteractableItem
@@ -12,7 +12,7 @@ public class ItemController : MonoBehaviour, IInteractableItem
     }
 
     [SerializeField]
-    private Item _item;
+    public Item item;
 
     [SerializeField]
     private GameObject itemLabelPrefab;
@@ -30,7 +30,7 @@ public class ItemController : MonoBehaviour, IInteractableItem
 
         itemLabelInstance = Instantiate(itemLabelPrefab, transform);
         itemLabelInstance.SetActive(false);
-        itemLabelInstance.GetComponent<LabelController>().SetText(_item.Name, _item.Name[0]);
+        itemLabelInstance.GetComponent<LabelController>().SetText(item.Name, item.Name[0]);
     }
 
     void PlayerEnteredArea(Collider playerCollider)
@@ -47,7 +47,7 @@ public class ItemController : MonoBehaviour, IInteractableItem
 
     public string GetItemName()
     {
-        return _item.Name;
+        return item.Name;
     }
 
     public char GetCurrentHotkey()
@@ -57,7 +57,7 @@ public class ItemController : MonoBehaviour, IInteractableItem
 
     public char GetUniqueHotkey(IEnumerable<char> usedHotkeys)
     {
-        char hotkey = HotkeyHelper.findUniqueHotkey(_item.Name, usedHotkeys);
+        char hotkey = HotkeyHelper.findUniqueHotkey(item.Name, usedHotkeys);
         itemLabelInstance.GetComponent<LabelController>().SetHotkey(hotkey);
         return hotkey;
     }
