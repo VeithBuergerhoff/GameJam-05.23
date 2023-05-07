@@ -7,7 +7,7 @@ public class CameraController : MonoBehaviour
     private Transform _player;
 
     [SerializeField]
-    private GameObject _mainCamera;
+    public GameObject mainCamera;
 
     [SerializeField]
     private Vector3 _offset = new(0, 10, 10);
@@ -30,23 +30,6 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     [Range(0, 10)]
     private float _lerpBoost = 10;
-
-    public static CameraController Instance { get; private set; }
-
-    void Awake()
-    {
-        if (Instance is not null && Instance != this)
-        {
-            throw new Exception($"{nameof(CameraController)} is a singleton! There can only ever be one instance");
-        }
-
-        Instance = this;
-    }
-
-    public GameObject getMainCamera()
-    {
-        return _mainCamera;
-    }
 
     void Update()
     {

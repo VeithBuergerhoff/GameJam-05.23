@@ -19,9 +19,10 @@ public class ItemLifecycleManager : MonoBehaviour
     {
         if (Instance is not null && Instance != this)
         {
-            throw new Exception($"{nameof(ItemLifecycleManager)} is a singleton! There can only ever be one instance");
+            Destroy(gameObject);
         }
 
+        DontDestroyOnLoad(gameObject);
         Instance = this;
 
         _editableInstantiator = Instantiate(_itemPrefab);
@@ -47,7 +48,7 @@ public class ItemLifecycleManager : MonoBehaviour
             item.transform.SetParent(null);
             item.gameObject.transform.SetPositionAndRotation(position, rotation);
             item.gameObject.name = $"Item: {initialValues.Name}";
-            item.SetText( initialValues );
+            item.SetText(initialValues);
             item.gameObject.SetActive(true);
             return item;
         }

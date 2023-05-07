@@ -27,11 +27,13 @@ public class LabelController : MonoBehaviour
     [SerializeField]
     private char hotkey = 'D';
 
-    private RectTransform rectTransform;
+    private RectTransform _rectTransform;
+    private CameraController _cameraController;
 
     private void Awake()
     {
-        rectTransform = GetComponent<RectTransform>();
+        _rectTransform = GetComponent<RectTransform>();
+        _cameraController = FindObjectOfType<CameraController>();
     }
 
     private void Start()
@@ -43,7 +45,7 @@ public class LabelController : MonoBehaviour
     {
         transform.SetPositionAndRotation(
             transform.parent.position + Vector3.up * verticalPositionOffset,
-            CameraController.Instance.getMainCamera().transform.rotation
+            _cameraController.transform.rotation
         );
     }
 
@@ -56,7 +58,7 @@ public class LabelController : MonoBehaviour
         itemDescription.SetText(description);
         itemDescription.ForceMeshUpdate();
         var itemDescriptionBounds = itemDescription.GetRenderedValues();
-        rectTransform.SetSizeWithCurrentAnchors(
+        _rectTransform.SetSizeWithCurrentAnchors(
             RectTransform.Axis.Horizontal,
             itemDescriptionBounds.x + padding + keycapIcon.rect.size.x * keycapIcon.localScale.x
         );

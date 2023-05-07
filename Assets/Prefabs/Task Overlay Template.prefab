@@ -59,7 +59,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 0.5911949, b: 0.5911949, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -99,7 +99,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5295367362788917748}
   - component: {fileID: 5635997146907605677}
-  - component: {fileID: 8555851551936538149}
+  - component: {fileID: 7034826734244839776}
   m_Layer: 5
   m_Name: RawImage
   m_TagString: Untagged
@@ -135,7 +135,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4377673205549508013}
   m_CullTransparentMesh: 1
---- !u!114 &8555851551936538149
+--- !u!114 &7034826734244839776
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,24 +144,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 4377673205549508013}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4433962, g: 0.2260827, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 0}
-  m_UVRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &4872774810950325635
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,8 +217,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 602c993f368946a40a2cdaf19b8bf56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textField: {fileID: 5815104285551149315}
-  _timeSlider: {fileID: 8408630925815777434}
+  textField: {fileID: 5815104285551149315}
+  timeSlider: {fileID: 8408630925815777434}
+  sliderFill: {fileID: 7034826734244839776}
+  timeGradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 0.009148996, b: 0, a: 1}
+    key1: {r: 0.917213, g: 1, b: 0.27044016, a: 1}
+    key2: {r: 0.2248621, g: 1, b: 0.06289297, a: 1}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 25058
+    ctime2: 65535
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 63029
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 3
+    m_NumAlphaKeys: 2
 --- !u!114 &5306236034824449368
 MonoBehaviour:
   m_ObjectHideFlags: 0

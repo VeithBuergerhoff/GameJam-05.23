@@ -20,6 +20,9 @@ public class TaskManager : MonoBehaviour
     private int _batchSize = 2;
 
     [SerializeField]
+    private int _maxTasks = 6;
+
+    [SerializeField]
     private Task[] _taskPool;
 
     [SerializeField]
@@ -31,11 +34,6 @@ public class TaskManager : MonoBehaviour
 
     void Awake()
     {
-        if (Instance is not null && Instance != this)
-        {
-            throw new Exception($"{nameof(TaskManager)} is a singleton! There can only ever be one instance");
-        }
-
         Instance = this;
     }
 
@@ -62,7 +60,7 @@ public class TaskManager : MonoBehaviour
     {
         var newOverlayItem = Instantiate(_overlayTaskTemplate);
         newOverlayItem.transform.SetParent(_taskOverlay.transform);
-        
+
         return newOverlayItem.GetComponent<TaskOverlayEntry>();
     }
 
@@ -72,7 +70,21 @@ public class TaskManager : MonoBehaviour
 
         CreateTasks();
 
-        var availableTaskHolders = _taskHolder.Where(x => !x.HasTask).ToList().Shuffle().Take(_batchSize);
+        var currentActiveTasks = _taskHolder.Where(x => x.HasTask).Count();
+        var availableTasks = _maxTasks - currentActiveTasks;
+        var numberTasksToQueue = _batchSize;
+
+        if (availableTasks == 0)
+        {
+            return;
+        }
+
+        if (availableTasks < _batchSize)
+        {
+            numberTasksToQueue = availableTasks;
+        }
+
+        var availableTaskHolders = _taskHolder.Where(x => !x.HasTask).ToList().Shuffle().Take(numberTasksToQueue);
 
         Debug.Log($"Queuing {availableTaskHolders.Count()} tasks");
 

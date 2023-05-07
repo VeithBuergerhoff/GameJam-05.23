@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class SpeechbubbleController : MonoBehaviour
@@ -37,7 +37,9 @@ public class SpeechbubbleController : MonoBehaviour
     [SerializeField]
     private int preferredWidth = 256;
 
-    private RectTransform rectTransform;
+    private RectTransform _rectTransform;
+    private CameraController _cameraController;
+
     private GameObject speechbubbleBackground;
     private GameObject taksIndicatorBackground;
 
@@ -49,16 +51,18 @@ public class SpeechbubbleController : MonoBehaviour
     void Awake()
     {
         sensorController = playerSensor.GetComponent<SensorController>();
-        rectTransform = GetComponent<RectTransform>();
+        _rectTransform = GetComponent<RectTransform>();
+        _cameraController = FindObjectOfType<CameraController>();
         speechbubbleBackground = transform.Find("background").gameObject;
         taksIndicatorBackground = transform.Find("taskIndikatorBackground").gameObject;
     }
 
     void Update()
     {
+
         transform.SetPositionAndRotation(
             transform.parent.position + Vector3.up * verticalPositionOffset,
-            CameraController.Instance.getMainCamera().transform.rotation
+            _cameraController.mainCamera.transform.rotation
         );
     }
 
@@ -70,16 +74,17 @@ public class SpeechbubbleController : MonoBehaviour
         var itemDescriptionBounds = descriptionField.GetRenderedValues();
         if (description == ":)" || description == ">:(")
         {
-            rectTransform.SetSizeWithCurrentAnchors(
+            _rectTransform.SetSizeWithCurrentAnchors(
                 RectTransform.Axis.Horizontal,
                 itemDescriptionBounds.x + padding
             );
+        } else {
+            _rectTransform.SetSizeWithCurrentAnchors(
+                RectTransform.Axis.Horizontal,
+                preferredWidth
+            );
         }
-        else
-        {
-            rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, preferredWidth);
-        }
-        rectTransform.SetSizeWithCurrentAnchors(
+        _rectTransform.SetSizeWithCurrentAnchors(
             RectTransform.Axis.Vertical,
             itemDescriptionBounds.y + padding
         );

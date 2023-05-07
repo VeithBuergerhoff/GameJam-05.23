@@ -5,8 +5,14 @@ using UnityEngine.UI;
 public class TaskOverlayEntry : MonoBehaviour
 {
     [SerializeField]
-    public TextMeshProUGUI _textField;
+    public TextMeshProUGUI textField;
 
     [SerializeField]
-    public Slider _timeSlider;
+    public Slider timeSlider;
+
+    [SerializeField]
+    public Image sliderFill;
+
+    [SerializeField]
+    public Gradient timeGradient;
 }
