@@ -130,6 +130,8 @@ public class ItemCarrier : MonoBehaviour
 
         int stackPosition = _items.Count - 1;
 
+        item.ShowLabel(false);
+
         item.transform.SetParent(_itemParent);
         item.transform.localPosition = Vector3.up * stackPosition;
     }

@@ -17,6 +17,7 @@ public class ItemController : MonoBehaviour, IInteractableItem
     [SerializeField]
     private GameObject itemLabelPrefab;
     private GameObject itemLabelInstance;
+    private LabelController itemLabelController;
 
     [SerializeField]
     private GameObject PlayerSensor;
@@ -30,7 +31,9 @@ public class ItemController : MonoBehaviour, IInteractableItem
 
         itemLabelInstance = Instantiate(itemLabelPrefab, transform);
         itemLabelInstance.SetActive(false);
-        itemLabelInstance.GetComponent<LabelController>().SetText(item.Name, item.Name[0]);
+        itemLabelController = itemLabelInstance.GetComponent<LabelController>();
+        itemLabelController.verticalPositionOffset = 1f;
+        itemLabelController.SetText(item.Name, item.Name[0]);
     }
 
     void PlayerEnteredArea(Collider playerCollider)
@@ -53,13 +56,13 @@ public class ItemController : MonoBehaviour, IInteractableItem
 
     public char GetCurrentHotkey()
     {
-        return itemLabelInstance.GetComponent<LabelController>().GetHotkey();
+        return itemLabelController.GetHotkey();
     }
 
     public char GetUniqueHotkey(IEnumerable<char> usedHotkeys)
     {
         char hotkey = HotkeyHelper.findUniqueHotkey(item.Name, usedHotkeys);
-        itemLabelInstance.GetComponent<LabelController>().SetHotkey(hotkey);
+        itemLabelController.SetHotkey(hotkey);
         return hotkey;
     }
 
@@ -69,6 +72,7 @@ public class ItemController : MonoBehaviour, IInteractableItem
     #endregion IInteractableItem
     public void ShowLabel(bool show)
     {
+        Debug.Log($"showLabel {show}");
         itemLabelInstance.SetActive(show);
     }
 
