@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 
 public interface IInteractableItem {
-    
 
-public char GetHotkey(int n = 0);
+public string GetItemName();
+public char GetCurrentHotkey();
 public char GetUniqueHotkey(IEnumerable<char> usedHotkeys);
 }

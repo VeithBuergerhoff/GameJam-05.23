@@ -151,8 +151,8 @@ public class ItemCarrier : MonoBehaviour
 
     public void registerInteractableItem(IInteractableItem item)
     {
-        if(!interactableItems.Values.Contains(item.GetHotkey())) {
-            interactableItems.Add(item, item.GetHotkey());
+        if(!interactableItems.Values.Contains(item.GetCurrentHotkey())) {
+            interactableItems.Add(item, item.GetCurrentHotkey());
         } else {
             interactableItems.Add(item, item.GetUniqueHotkey(interactableItems.Values));
         }

@@ -45,44 +45,19 @@ public class ItemController : MonoBehaviour, IInteractableItem
         ShowLabel(false);
     }
 
-    public char GetHotkey(int n = 0)
+    public string GetItemName()
     {
-        if (n < _item.Name.Length)
-        {
-            itemLabelInstance.GetComponent<LabelController>().SetHotkey(_item.Name.ToUpper()[n]);
-            return _item.Name.ToUpper()[n];
-        }
-        else
-        {
-            throw new IndexOutOfRangeException(
-                $"Itemname '${_item.Name}' does not have ${n} letters, use a smaller index"
-            );
-        }
+        return _item.Name;
+    }
+
+    public char GetCurrentHotkey()
+    {
+        return itemLabelInstance.GetComponent<LabelController>().GetHotkey();
     }
 
     public char GetUniqueHotkey(IEnumerable<char> usedHotkeys)
     {
-        char hotkey;
-        var uniqueCharsInName = _item.Name.ToUpper().Except(usedHotkeys);
-        if (uniqueCharsInName.Any())
-        {
-            hotkey = uniqueCharsInName.First();
-        }
-        else
-        {
-            var uniqueCharsInAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".Except(usedHotkeys);
-            if (uniqueCharsInAlphabet.Any())
-            {
-                hotkey = uniqueCharsInAlphabet.ElementAt(
-                    UnityEngine.Random.Range(0, uniqueCharsInAlphabet.Count() - 1)
-                );
-            }
-            else
-            {
-                throw new IndexOutOfRangeException("There are no hotkeys left :(");
-            }
-        }
-
+        char hotkey = HotkeyHelper.findUniqueHotkey(_item.Name, usedHotkeys);
         itemLabelInstance.GetComponent<LabelController>().SetHotkey(hotkey);
         return hotkey;
     }

@@ -31,39 +31,18 @@ public class StockpileController : MonoBehaviour, IInteractableItem
         itemLabelInstance.GetComponent<LabelController>().SetText(itemName, itemName[0]);
     }
 
-    public char GetHotkey(int n = 0)
+    public string GetItemName(){
+        return itemName;
+    }
+
+    public char GetCurrentHotkey()
     {
-        if (n < itemName.Length)
-        {
-            itemLabelInstance.GetComponent<LabelController>().SetHotkey(itemName.ToUpper()[n]);
-            return itemName[n];
-        } else {
-            throw new IndexOutOfRangeException($"Itemname '${itemName}' does not have ${n} letters, use a smaller index");
-        }
+        return itemLabelInstance.GetComponent<LabelController>().GetHotkey();
     }
 
     public char GetUniqueHotkey(IEnumerable<char> usedHotkeys)
     {
-        char hotkey;
-        var uniqueCharsInName = itemName.ToUpper().Except(usedHotkeys);
-        if (uniqueCharsInName.Any())
-        {
-            hotkey = uniqueCharsInName.First();
-        }
-        else
-        {
-            var uniqueCharsInAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".Except(usedHotkeys);
-            if (uniqueCharsInAlphabet.Any())
-            {
-                hotkey = uniqueCharsInAlphabet.ElementAt(
-                    UnityEngine.Random.Range(0, uniqueCharsInAlphabet.Count() - 1)
-                );
-            }
-            else
-            {
-                throw new IndexOutOfRangeException("There are no hotkeys left :(");
-            }
-        }
+        char hotkey = HotkeyHelper.findUniqueHotkey(itemName, usedHotkeys);
         itemLabelInstance.GetComponent<LabelController>().SetHotkey(hotkey);
         return hotkey;
     }

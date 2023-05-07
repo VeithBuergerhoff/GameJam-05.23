@@ -59,4 +59,8 @@ public class LabelController : MonoBehaviour
         this.hotkey = hotkey;
         iconText.SetText(hotkey.ToString());
     }
+
+    public char GetHotkey(){
+        return hotkey;
+    }
 }
